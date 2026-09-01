@@ -1,4 +1,4 @@
-/// Iran's licence plates for the `plate_number` / `core_plate` library.
+/// Iran's licence plates for the `core_plate` library.
 ///
 /// Data, not code: a [PlateCountry], two [PlateAlphabet]s and two [PlateSpec]s
 /// that the core widget layer paints. Nothing here knows about any other
