@@ -1,13 +1,13 @@
 # iran_plate
 
-Iran's licence plates for the [`core_plate`](../core-plate) library. It is data,
+Iran's licence plates for the [`core_plate`](https://pub.dev/packages/core_plate) library. It is data,
 not code: the country panel with the flag SVG this package ships, the Persian
 digit and plate-letter alphabets, and the car and bicycle specs. The core widget
 layer paints them — adding a plate means adding a `const`, never a widget.
 
 ## Depends on
 
-`core_plate` (by path, `../core-plate`), for `PlateSpec`, `PlateCountry` and
+`core_plate` (`^0.1.0`), for `PlateSpec`, `PlateCountry` and
 `PlateAlphabet`.
 
 ## Does not depend on
