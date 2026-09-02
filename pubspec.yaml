@@ -1,7 +1,7 @@
 name: iran_plate
 description: "Iran's licence plates for the core_plate library — the country panel, the Persian alphabets, and the car and bicycle specs."
 version: 0.1.0
-homepage: https://github.com/ArAdBey/plate-number
+homepage: https://github.com/ArAd1Beyranvand/iran-plate
 
 environment:
   sdk: '>=3.10.0 <4.0.0'
