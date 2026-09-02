@@ -1,3 +1,8 @@
+FREE PALESTINE 🇮🇷🇵🇸 پاینده ایران
+GO VEGAN 🌱
+==================================
+
+
 # iran_plate example
 
 One Iranian car plate, centred, doing nothing dramatic. Swap `IranPlates.car` for
