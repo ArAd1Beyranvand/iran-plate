@@ -13,9 +13,6 @@ class IranCountry {
     panelColor: Color(0xFF16479D),
     panelTextColor: Color(0xFFFFFFFF),
     flagAspectRatio: 7 / 4,
-    flag: SvgPlateAsset(
-      'assets/flags/Flag_of_Iran.svg',
-      package: 'iran_plate',
-    ),
+    flag: SvgPlateAsset('assets/flags/Flag_of_Iran.svg', package: 'iran_plate'),
   );
 }

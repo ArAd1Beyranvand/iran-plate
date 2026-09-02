@@ -26,14 +26,38 @@ class IranPlates {
     ),
     textDirection: TextDirection.rtl,
     slots: [
-      PlateSlot(alphabet: PersianAlphabets.digits, box: PlateBox(65, 17, 47, 76)),
-      PlateSlot(alphabet: PersianAlphabets.digits, box: PlateBox(120, 17, 47, 76)),
-      PlateSlot(alphabet: PersianAlphabets.plateLetters, box: PlateBox(175, 17, 55, 76)),
-      PlateSlot(alphabet: PersianAlphabets.digits, box: PlateBox(238, 17, 47, 76)),
-      PlateSlot(alphabet: PersianAlphabets.digits, box: PlateBox(293, 17, 47, 76)),
-      PlateSlot(alphabet: PersianAlphabets.digits, box: PlateBox(348, 17, 47, 76)),
-      PlateSlot(alphabet: PersianAlphabets.digits, box: PlateBox(428, 40, 32, 52)),
-      PlateSlot(alphabet: PersianAlphabets.digits, box: PlateBox(466, 40, 32, 52)),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(65, 17, 47, 76),
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(120, 17, 47, 76),
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.plateLetters,
+        box: PlateBox(175, 17, 55, 76),
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(238, 17, 47, 76),
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(293, 17, 47, 76),
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(348, 17, 47, 76),
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(428, 40, 32, 52),
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(466, 40, 32, 52),
+      ),
     ],
     rules: [
       // The province divider runs the full height of the plate face (top edge
@@ -41,7 +65,11 @@ class IranPlates {
       PlateRule(box: PlateBox(404, 4.4, 5, 101.2)),
     ],
     labels: [
-      PlateLabel(text: 'ایران', box: PlateBox(412, 18, 103, 16), glyphHeight: 16),
+      PlateLabel(
+        text: 'ایران',
+        box: PlateBox(412, 18, 103, 16),
+        glyphHeight: 16,
+      ),
     ],
     textGroups: [
       PlateTextGroup([0, 1]),
@@ -80,14 +108,38 @@ class IranPlates {
     textDirection: TextDirection.rtl,
     borderWidthRatioOverride: 0.05,
     slots: [
-      PlateSlot(alphabet: PersianAlphabets.digits, box: PlateBox(74, 13, 22, 36)),
-      PlateSlot(alphabet: PersianAlphabets.digits, box: PlateBox(104, 13, 22, 36)),
-      PlateSlot(alphabet: PersianAlphabets.digits, box: PlateBox(134, 13, 22, 36)),
-      PlateSlot(alphabet: PersianAlphabets.digits, box: PlateBox(8, 58, 27, 44)),
-      PlateSlot(alphabet: PersianAlphabets.digits, box: PlateBox(41, 58, 27, 44)),
-      PlateSlot(alphabet: PersianAlphabets.digits, box: PlateBox(74, 58, 27, 44)),
-      PlateSlot(alphabet: PersianAlphabets.digits, box: PlateBox(107, 58, 27, 44)),
-      PlateSlot(alphabet: PersianAlphabets.digits, box: PlateBox(140, 58, 27, 44)),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(74, 13, 22, 36),
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(104, 13, 22, 36),
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(134, 13, 22, 36),
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(8, 58, 27, 44),
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(41, 58, 27, 44),
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(74, 58, 27, 44),
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(107, 58, 27, 44),
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(140, 58, 27, 44),
+      ),
     ],
   );
 }
