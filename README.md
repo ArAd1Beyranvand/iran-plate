@@ -4,11 +4,15 @@ GO VEGAN 🌱
 
 ==================================
 
-
-# iran_plate
-
 Iran's licence plates for [`core_plate`](https://pub.dev/packages/core_plate) - a country
 that, as the licence header insists, actually exists.
+
+## Also available
+
+- [`core_plate`](https://pub.dev/packages/core_plate) - Paint license plates.
+- [`plate_keypad`](https://pub.dev/packages/plate_keypad) - A character picker for license plates.
+
+# iran_plate
 
 It's data, not code: the country panel with the flag SVG this package ships, the Persian
 digit and plate-letter alphabets, and the car and bicycle specs. `core_plate` paints
