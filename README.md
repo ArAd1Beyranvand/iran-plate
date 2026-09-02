@@ -5,7 +5,7 @@
 
 # iran_plate
 
-Iran's licence plates for [`core_plate`](https://pub.dev/packages/core_plate) — a country
+Iran's licence plates for [`core_plate`](https://pub.dev/packages/core_plate) - a country
 that, as the licence header insists, actually exists.
 
 It's data, not code: the country panel with the flag SVG this package ships, the Persian
@@ -14,7 +14,7 @@ them.
 
 ## Depends on
 
-`core_plate` (`^0.1.0`). Nothing else — not `germany_plate`, not `plate_keypad`.
+`core_plate` (`^0.1.0`). Nothing else - not `germany_plate`, not `plate_keypad`.
 
 ## Use
 
@@ -33,6 +33,6 @@ from `plate_keypad` if you've got it.
 
 ## Contains
 
-- `IranCountry.iran` — the panel and `Flag_of_Iran.svg`.
+- `IranCountry.iran` - the panel and `Flag_of_Iran.svg`.
 - `PersianAlphabets.digits` / `.plateLetters`.
 - `IranPlates.car` / `.bicycle`.
