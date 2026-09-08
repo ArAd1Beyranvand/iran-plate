@@ -9,7 +9,7 @@ class ExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const spec = IranPlates.car; // or IranPlates.bicycle
+    final spec = IranPlates.car; // or IranPlates.bicycle
     return MaterialApp(
       home: Scaffold(
         body: Center(

@@ -8,12 +8,16 @@ import 'persian_alphabets.dart';
 class IranPlates {
   const IranPlates._();
 
-  static const PlateSpec car = PlateSpec(
+  /// `final`, not `const`: the digit registers are built by [plateRegister],
+  /// and a `const` constructor cannot run a loop. Initialised lazily, once per
+  /// isolate; [PlateSpec] equality is over `id` alone, so nothing here depended
+  /// on const canonicalisation.
+  static final PlateSpec car = PlateSpec(
     id: 'ir.car',
     country: IranCountry.iran,
     canvasWidth: 520,
     canvasHeight: 110,
-    panel: PlatePanel(
+    panel: const PlatePanel(
       // Overlap the border on the three touching edges (left/top/bottom)
       // instead of sitting flush at the border thickness (0.04 * canvasHeight =
       // 4.4). The panel is clipped back to the rounded plate face by
@@ -26,52 +30,57 @@ class IranPlates {
     ),
     textDirection: TextDirection.rtl,
     slots: [
-      PlateSlot(
+      // The leading pair and the serial triple share a pitch of 55 but not a
+      // run: the letter sits between them, on its own wider box. Three
+      // registers, not one — the gaps are where the letter and the province
+      // divider go.
+      ...plateRegister(
         alphabet: PersianAlphabets.digits,
-        box: PlateBox(65, 17, 47, 76),
+        count: 2,
+        left: 65,
+        top: 17,
+        width: 47,
+        height: 76,
+        pitch: 55,
       ),
-      PlateSlot(
-        alphabet: PersianAlphabets.digits,
-        box: PlateBox(120, 17, 47, 76),
-      ),
-      PlateSlot(
+      const PlateSlot(
         alphabet: PersianAlphabets.plateLetters,
         box: PlateBox(175, 17, 55, 76),
       ),
-      PlateSlot(
+      ...plateRegister(
         alphabet: PersianAlphabets.digits,
-        box: PlateBox(238, 17, 47, 76),
+        count: 3,
+        left: 238,
+        top: 17,
+        width: 47,
+        height: 76,
+        pitch: 55,
       ),
-      PlateSlot(
+      // The province pair, past the divider: smaller cells, lower and on their
+      // own pitch.
+      ...plateRegister(
         alphabet: PersianAlphabets.digits,
-        box: PlateBox(293, 17, 47, 76),
-      ),
-      PlateSlot(
-        alphabet: PersianAlphabets.digits,
-        box: PlateBox(348, 17, 47, 76),
-      ),
-      PlateSlot(
-        alphabet: PersianAlphabets.digits,
-        box: PlateBox(428, 40, 32, 52),
-      ),
-      PlateSlot(
-        alphabet: PersianAlphabets.digits,
-        box: PlateBox(466, 40, 32, 52),
+        count: 2,
+        left: 428,
+        top: 40,
+        width: 32,
+        height: 52,
+        pitch: 38,
       ),
     ],
-    rules: [
+    rules: const [
       // The province divider runs the full height of the plate face (top edge
       // to bottom edge), meeting the border at both ends — no empty gaps.
       PlateRule(box: PlateBox(404, 4.4, 5, 101.2)),
     ],
-    labels: [
+    labels: const [
       PlateLabel(
         text: 'ایران',
         box: PlateBox(412, 18, 103, 16),
         glyphHeight: 16,
       ),
     ],
-    textGroups: [
+    textGroups: const [
       PlateTextGroup([0, 1]),
       PlateTextGroup([2]),
       PlateTextGroup([3, 4, 5]),
@@ -79,12 +88,13 @@ class IranPlates {
     ],
   );
 
-  static const PlateSpec bicycle = PlateSpec(
+  /// `final`, not `const`, for the same reason as [car].
+  static final PlateSpec bicycle = PlateSpec(
     id: 'ir.bicycle',
     country: IranCountry.iran,
     canvasWidth: 175,
     canvasHeight: 110,
-    panel: PlatePanel(
+    panel: const PlatePanel(
       // Overlap the border on the two touching edges (left/top) instead of
       // sitting flush at the border thickness (0.05 * canvasHeight = 5.5); the
       // panel is clipped back to the plate face, so this kills the thin white
@@ -108,37 +118,25 @@ class IranPlates {
     textDirection: TextDirection.rtl,
     borderWidthRatioOverride: 0.05,
     slots: [
-      PlateSlot(
+      // Upper band: three digits beside the panel, at pitch 30.
+      ...plateRegister(
         alphabet: PersianAlphabets.digits,
-        box: PlateBox(74, 13, 22, 36),
+        count: 3,
+        left: 74,
+        top: 13,
+        width: 22,
+        height: 36,
+        pitch: 30,
       ),
-      PlateSlot(
+      // Lower band: five bigger digits across the full width, at pitch 33.
+      ...plateRegister(
         alphabet: PersianAlphabets.digits,
-        box: PlateBox(104, 13, 22, 36),
-      ),
-      PlateSlot(
-        alphabet: PersianAlphabets.digits,
-        box: PlateBox(134, 13, 22, 36),
-      ),
-      PlateSlot(
-        alphabet: PersianAlphabets.digits,
-        box: PlateBox(8, 58, 27, 44),
-      ),
-      PlateSlot(
-        alphabet: PersianAlphabets.digits,
-        box: PlateBox(41, 58, 27, 44),
-      ),
-      PlateSlot(
-        alphabet: PersianAlphabets.digits,
-        box: PlateBox(74, 58, 27, 44),
-      ),
-      PlateSlot(
-        alphabet: PersianAlphabets.digits,
-        box: PlateBox(107, 58, 27, 44),
-      ),
-      PlateSlot(
-        alphabet: PersianAlphabets.digits,
-        box: PlateBox(140, 58, 27, 44),
+        count: 5,
+        left: 8,
+        top: 58,
+        width: 27,
+        height: 44,
+        pitch: 33,
       ),
     ],
   );

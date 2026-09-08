@@ -1,3 +1,21 @@
+## Unreleased
+
+- **Both plates' digit runs are registers, not rectangles.** `IranPlates.car`'s
+  leading pair, serial triple and province pair, and `IranPlates.bicycle`'s two
+  rows, are built by `plateRegister` (core 0.6.0). Each states its own pitch —
+  55, 55, 38 on the car; 30 and 33 on the bicycle — because they are separate
+  registers with the letter cell and the province divider in the gaps between
+  them. The geometry is unchanged to the unit; nothing on a rendered plate
+  moves.
+- The car's letter cell stays literal: it is wider than a digit and sits on its
+  own pitch.
+- `IranPlates.car` and `.bicycle` are now `static final` rather than
+  `static const`: a `const` constructor cannot run a loop. `PlateSpec` equality
+  is over `id` alone and a `static final` is initialised lazily once per
+  isolate, so this changes no behaviour — but `const spec = IranPlates.car;`
+  must become `final spec = …`, as the example now does.
+- Requires `core_plate: ^0.6.0` for `plateRegister`.
+
 ## 0.1.0
 
 First pub.dev release.
