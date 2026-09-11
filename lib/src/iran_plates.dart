@@ -43,10 +43,7 @@ class IranPlates {
         height: 76,
         pitch: 55,
       ),
-      const PlateSlot(
-        alphabet: PersianAlphabets.plateLetters,
-        box: PlateBox(175, 17, 55, 76),
-      ),
+      const PlateSlot(alphabet: PersianAlphabets.plateLetters, box: PlateBox(175, 17, 55, 76)),
       ...plateRegister(
         alphabet: PersianAlphabets.digits,
         count: 3,
@@ -73,13 +70,7 @@ class IranPlates {
       // to bottom edge), meeting the border at both ends — no empty gaps.
       PlateRule(box: PlateBox(404, 4.4, 5, 101.2)),
     ],
-    labels: const [
-      PlateLabel(
-        text: 'ایران',
-        box: PlateBox(412, 18, 103, 16),
-        glyphHeight: 16,
-      ),
-    ],
+    labels: const [PlateLabel(text: 'ایران', box: PlateBox(412, 18, 103, 16), glyphHeight: 16)],
     textGroups: const [
       PlateTextGroup([0, 1]),
       PlateTextGroup([2]),
@@ -129,15 +120,7 @@ class IranPlates {
         pitch: 30,
       ),
       // Lower band: five bigger digits across the full width, at pitch 33.
-      ...plateRegister(
-        alphabet: PersianAlphabets.digits,
-        count: 5,
-        left: 8,
-        top: 58,
-        width: 27,
-        height: 44,
-        pitch: 33,
-      ),
+      ...plateRegister(alphabet: PersianAlphabets.digits, count: 5, left: 8, top: 58, width: 27, height: 44, pitch: 33),
     ],
   );
 }

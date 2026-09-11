@@ -15,10 +15,7 @@ class ExampleApp extends StatelessWidget {
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: PlateCanvas(
-              spec: spec,
-              onChooseCharacter: (alphabet) async => null,
-            ),
+            child: PlateCanvas(spec: spec, onChooseCharacter: (alphabet) async => null),
           ),
         ),
       ),

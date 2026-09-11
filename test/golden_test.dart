@@ -12,16 +12,7 @@ import 'package:iran_plate/iran_plate.dart';
 void main() {
   testWidgets('car, full value (RTL, glyph mapping, province rule)', (tester) async {
     final spec = IranPlates.car;
-    final controller = PlateController.fromValues(spec, const [
-      '1',
-      '2',
-      'ب',
-      '3',
-      '4',
-      '5',
-      '6',
-      '7',
-    ]);
+    final controller = PlateController.fromValues(spec, const ['1', '2', 'ب', '3', '4', '5', '6', '7']);
 
     await tester.pumpWidget(
       MaterialApp(
