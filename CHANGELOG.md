@@ -1,4 +1,4 @@
-## Unreleased
+## 0.2.0
 
 - **Both plates' digit runs are registers, not rectangles.** `IranPlates.car`'s
   leading pair, serial triple and province pair, and `IranPlates.bicycle`'s two
