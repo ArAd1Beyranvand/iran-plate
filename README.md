@@ -40,7 +40,8 @@ PlateCanvas(
 ```
 
 The letter slot on an Iranian plate wants a picker. Pass `PlateCharacterPicker.show`
-from `plate_keypad` if you've got it.
+from `plate_keypad` if you've got it - the repo's `plate_gallery/` app wires exactly
+that, next to every plate the other country packages draw.
 
 ## Contains
 
