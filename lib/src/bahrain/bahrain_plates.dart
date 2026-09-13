@@ -95,7 +95,7 @@ abstract final class BahrainPlates {
         pitch: 42,
       ),
     ],
-    rules: const [PlateRule(box: PlateBox(272, 52, 9, 84))],
+    rules: const [PlateRule(box: PlateBox(254, 52, 27, 84))],
     labels: const [
       PlateLabel(text: 'BAHRAIN', box: PlateBox(12, 14, 88, 24), glyphHeight: 24),
       PlateLabel(text: 'البحرين', box: PlateBox(163, 12, 108, 30), glyphHeight: 28),
