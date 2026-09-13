@@ -61,7 +61,7 @@ abstract final class BahrainPlates {
     // wording one this size used to carry. It runs under the frame top, bottom
     // and right, and is clipped back to the rounded face, so it meets the
     // frame with no seam.
-    rules: const [PlateRule(box: PlateBox(495, 0, 9, 110))],
+    rules: const [PlateRule(box: PlateBox(502.5, 0, 9, 110))],
     labels: const [
       PlateLabel(text: 'البحرين', box: PlateBox(408, 14, 98, 30), glyphHeight: 30),
       // Seven wide Latin capitals against six Arabic letters: the Latin still
@@ -95,7 +95,7 @@ abstract final class BahrainPlates {
         pitch: 42,
       ),
     ],
-    rules: const [PlateRule(box: PlateBox(275, 0, 9, 150))],
+    rules: const [PlateRule(box: PlateBox(282.5, 0, 9, 150))],
     labels: const [
       PlateLabel(text: 'BAHRAIN', box: PlateBox(12, 14, 88, 24), glyphHeight: 24),
       PlateLabel(text: 'البحرين', box: PlateBox(163, 12, 108, 30), glyphHeight: 28),
