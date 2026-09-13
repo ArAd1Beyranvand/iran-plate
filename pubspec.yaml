@@ -1,6 +1,6 @@
 name: iran_plate
-description: "Iran's licence plates for the core_plate library — the country panel, the Persian alphabets, and the car and bicycle specs."
-version: 0.2.0
+description: "Iran's, Bahrain's and Azerbaijan's licence plates for the core_plate library — country panels, the Persian alphabets, and the Iranian, Bahraini and Azerbaijani plate specs."
+version: 0.4.0
 homepage: https://github.com/ArAd1Beyranvand/iran-plate
 
 environment:
@@ -12,8 +12,9 @@ resolution: workspace
 dependencies:
   flutter:
     sdk: flutter
-  # The country-neutral engine. 0.6.0 is required for plateRegister.
-  core_plate: ^0.9.0
+  # The country-neutral engine. 0.6.0 is required for plateRegister, 0.9.1
+  # for PlateLabel.color (the Bahraini bands' reversed-out captions).
+  core_plate: ^0.9.1
 
 dev_dependencies:
   flutter_lints: ^6.0.0
@@ -28,4 +29,6 @@ flutter:
   # fails for a fresh consumer.
   assets:
     - assets/flags/Flag_of_Iran.svg
+    - assets/flags/Flag_of_Bahrain.svg
+    - assets/flags/Flag_of_Azerbaijan.svg
 
