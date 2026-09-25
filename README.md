@@ -5,8 +5,8 @@ GO VEGAN 🌱
 ==================================
 
 Iran's licence plates for [`core_plate`](https://pub.dev/packages/core_plate) - a country
-that, as the licence header insists, actually exists. Bahrain's and Azerbaijan's ride
-along in the same package.
+that, as the licence header insists, actually exists. Bahrain's and Azerbaijan's have moved
+out to [`iranshahr_plate`](https://pub.dev/packages/iranshahr_plate).
 
 ## Also available
 
@@ -19,13 +19,13 @@ along in the same package.
 
 # iran_plate
 
-It's data, not code: the country panels with the flag SVGs this package ships, the Persian
-digit and plate-letter alphabets, and the plate specs for three countries. `core_plate`
-paints them.
+It's data, not code: the country panel with the flag SVG this package ships, the Persian
+digit and letter alphabets, the usage-derived colour schemes, and the plate specs for every
+Iranian vehicle class. `core_plate` paints them.
 
 ## Depends on
 
-`core_plate` (`^0.1.0`). Nothing else - not `germany_plate`, not `plate_keypad`,
+`core_plate` (`^0.9.1`). Nothing else - not `germany_plate`, not `plate_keypad`,
 not `core_plate_bloc`.
 
 ## Use
@@ -35,42 +35,74 @@ import 'package:core_plate/core_plate.dart';
 import 'package:iran_plate/iran_plate.dart';
 
 PlateCanvas(
-  spec: IranPlates.car,          // or IranPlates.bicycle
+  spec: IranPlates.car,
+  theme: IranThemes.blackOnWhite,
   onChooseCharacter: (a) async => null,
 );
 ```
 
-The letter slot on an Iranian plate wants a picker. Pass `PlateCharacterPicker.show`
-from `plate_keypad` if you've got it - the repo's `plate_gallery/` app wires exactly
-that, next to every plate the other country packages draw.
+Iran encodes the vehicle class twice over - in the **series letter** and in the **field
+colour** - so both come from one `IranUsage` and neither is picked by hand:
+
+```dart
+PlateCanvas(
+  spec: IranPlates.forUsage(IranUsage.taxi),    // yellow blank, `ت` fixed, TAXI above it
+  theme: IranThemes.forUsage(IranUsage.taxi),
+  onChooseCharacter: (a) async => null,
+);
+```
+
+The letter slot on a **private** plate wants a picker: it is one of thirteen county
+letters. Pass `PlateCharacterPicker.show` from `plate_keypad` if you've got it - the
+repo's `plate_gallery/` app wires exactly that, next to every plate the other country
+packages draw. Every other class fixes its letter to a single character, so the picker
+has one answer and opening it changes nothing.
 
 ## Contains
 
 - `IranCountry.iran` - the panel and `Flag_of_Iran.svg`.
-- `PersianAlphabets.digits` / `.plateLetters`.
-- `IranPlates.car` / `.bicycle`.
+- `IranColors` - every field and ink colour, sampled off the reference images.
+- `IranThemes` - eight schemes, plus `IranThemes.forUsage`.
+- `IranUsage` - the seventeen vehicle classes and the letter each is fixed to.
+- `PersianAlphabets.digits`, `.privateLetters`, `.disabledSymbol`, and one
+  single-character alphabet per fixed-letter class.
+- `IranPlates.forUsage`, `IranPlates.all`, and a named const per class.
 
-### Bahrain, in `src/bahrain/`
+### The plates
 
-- `BahrainCountry.civilian` / `.diplomatic` / `.police`, and `Flag_of_Bahrain.svg`.
-- `BahrainColors`, `BahrainThemes.civilian` / `.diplomatic` / `.police`.
-- `BahrainPlates.eu` / `.us` / `.bicycle` / `.diplomatic` / `.police`, and `.all`.
+Fourteen classes share one 520x110 blank - a taxi plate is a private plate in yellow with
+`ت` fixed in the letter slot, not a second design:
 
-### Azerbaijan, in `src/azerbaijan/`
+| Class | Letter | Scheme |
+| --- | --- | --- |
+| `car` (private) | one of thirteen, by county | black on white |
+| `disabled` | `♿︎` (stored `ژ`) | black on white |
+| `temporary` | `گ` | black on white |
+| `taxi` | `ت`, under the word TAXI | black on yellow |
+| `publicTransport` | `ع` | black on yellow |
+| `agricultural` | `ک` | black on yellow |
+| `government` | `الف` | white on red |
+| `police` | `پ` | white on dark green |
+| `irgc` | `ث` | white on dark green |
+| `army` | `ش` | black on light brown |
+| `ministryOfDefence` | `ز` | white on light blue |
+| `generalStaff` | `ف` | white on light blue |
+| `political` | `D`, square reads `سیاسی` | black on cyan |
+| `service` | `S`, square reads `سرویس` | black on cyan |
 
-- `AzerbaijanCountry.azerbaijan` - one block for every class, and `Flag_of_Azerbaijan.svg`.
-- `AzerbaijanColors`, `AzerbaijanThemes.civilian` / `.transport` / `.diplomatic` / `.foreign`.
-- `AzerbaijanPlates.car` / `.bicycle` / `.diplomatic` / `.foreign`, and `.all`.
+Three are their own blank: `protocol` (`تشریفات` / PROTOCOL beside a bare serial, no
+letter and no province square), `historic` (`تاریخی` over five digits, American size) and
+`motorcycle` (a three-digit provincial code over a five-digit serial).
 
-Five plates over four specs. An Azerbaijani class is the colour of the field and the
-grouping of the serial and nothing else - no divider, no security band, no sticker, and
-the same white flag-over-`AZ` block whatever the field is. So the blue bus-and-taxi
-plate is the car spec in another theme rather than a spec of its own:
+### Not shipped
 
-```dart
-PlateCanvas(spec: AzerbaijanPlates.car, theme: AzerbaijanThemes.civilian, ...);  // 88-BE-114
-PlateCanvas(spec: AzerbaijanPlates.car, theme: AzerbaijanThemes.transport, ...); // 10-TH-308
-```
+- The **free trade zone** plates (Anzali, Aras, Arvand, Kish, Maku, Chabahar, Qeshm). Each
+  prints its zone's logo, and this package ships no such image.
+- The **Bagh-e Melli photograph** on the historic plate, for the same reason:
+  `IranPlates.historic` draws the ordinary flag-and-caption block in its place.
+- The **previous-format** political, service and temporary-passage plates, which the
+  article shows only as small raster images.
 
-These three countries share this package and nothing else: no file in one folder imports
-one in another, and they have no constant in common.
+Everything above is read off the Wikipedia article *Vehicle registration plates of Iran* -
+the letter series table, the section text, and the reference SVGs, which is where the
+coordinates and the sampled colours come from.

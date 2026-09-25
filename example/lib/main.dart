@@ -9,13 +9,18 @@ class ExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final spec = IranPlates.car; // or IranPlates.bicycle
+    // Any of IranUsage's seventeen classes; spec and theme both come from it.
+    const usage = IranUsage.private;
     return MaterialApp(
       home: Scaffold(
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: PlateCanvas(spec: spec, onChooseCharacter: (alphabet) async => null),
+            child: PlateCanvas(
+              spec: IranPlates.forUsage(usage),
+              theme: IranThemes.forUsage(usage),
+              onChooseCharacter: (alphabet) async => null,
+            ),
           ),
         ),
       ),

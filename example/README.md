@@ -7,14 +7,14 @@ GO VEGAN 🌱
 
 # iran_plate example
 
-One Iranian car plate, centred, doing nothing dramatic. Swap `IranPlates.car` for
-`IranPlates.bicycle` if you want a smaller one.
+One Iranian car plate, centred, doing nothing dramatic. Swap `IranUsage.private` for
+any of the other sixteen classes - `IranUsage.taxi`, `.police`, `.motorcycle` - and both
+the geometry and the colour follow.
 
 Run it with `flutter run` from this directory.
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core_plate/core_plate.dart';
 import 'package:iran_plate/iran_plate.dart';
 
@@ -25,18 +25,16 @@ class ExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const spec = IranPlates.car; // or IranPlates.bicycle
+    const usage = IranUsage.private; // or .taxi, .police, .motorcycle, ...
     return MaterialApp(
       home: Scaffold(
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: BlocProvider(
-              create: (_) => PlateCardBloc(spec),
-              child: PlateCanvas(
-                spec: spec,
-                onChooseCharacter: (alphabet) async => null,
-              ),
+            child: PlateCanvas(
+              spec: IranPlates.forUsage(usage),
+              theme: IranThemes.forUsage(usage),
+              onChooseCharacter: (alphabet) async => null,
             ),
           ),
         ),

@@ -1,0 +1,26 @@
+
+iran countries
+class IranPlates {
+  const IranPlates._();
+static IranPlates;
+}
+
+/// `final`, not `const`: the digit registers are built by [plateRegister],
+/// and a `const` constructor cannot run a loop. Initialised lazily, once per
+/// isolate; [PlateSpec] equality is over `id` alone, so nothing here depended
+/// on const canonicalisation.
+static final PlateSpec car = PlateSpec(
+    id: 'ir.car',
+country: IranCountry.iran,
+canvasWidth: 520,
+canvasHeight: 110,
+panel: const PlatePanel(
+   Overlap the border on the three touching edges (left/top/bottom)
+      instead of sitting flush at the border thickness (0.04 * canvasHeight =
+         4.4). The panel is clipped back to the rounded plate face by
+          _PlateFaceClipper, so extending it under the frame just makes the blue
+          paint right up to the clip boundary — killing the thin white seam that
+          a flush edge leaves when the FittedBox scale lands the panel edge and
+          the border edge on different physical pixels. Right edge (56.4) stays
+             interior and is unchanged.
+      box: PlateBox(0, 0, 56.4, 110),

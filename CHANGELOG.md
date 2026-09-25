@@ -1,3 +1,97 @@
+## 0.6.0
+
+**The rest of Iran's plates.** The package shipped two: the private car and the
+motorcycle. It now ships seventeen vehicle classes, read off the Wikipedia
+article *Vehicle registration plates of Iran* — the *Letter series* table, the
+section text, and the reference SVGs the coordinates and colours are measured
+from.
+
+**Class is a usage, and it drives two things.** Iran encodes the vehicle class
+in the series letter (free on a private plate, fixed for everything else) and in
+the field colour. Both are now derived from one `IranUsage` and neither is
+chosen by hand:
+
+```dart
+PlateCanvas(
+  spec: IranPlates.forUsage(IranUsage.taxi),
+  theme: IranThemes.forUsage(IranUsage.taxi),
+  onChooseCharacter: PlateCharacterPicker.show,
+);
+```
+
+**Fourteen classes are one blank in fourteen liveries.** A taxi plate is not a
+different design from a private one — it is the same 520x110 geometry in yellow
+with `ت` fixed in the letter slot and the word TAXI printed above it. So the
+coordinates are written down once, in a private `_standard` builder, and what
+varies between the classes is data: the letter's alphabet, how wide its box has
+to be for the character it holds, any extra wording, and the caption in the
+right-hand square (`ایران`, or `سیاسی` / `سرویس` on the political and service
+plates). Three classes are genuinely their own blank and are written out in
+full: `protocol`, `historic` and `motorcycle`.
+
+**The wheelchair symbol, stored as `ژ`.** `PersianAlphabets.disabledSymbol`
+stores `ژ` and renders `♿︎`. That is not a workaround — it is what the article's
+own footnote describes: the symbol is what the plate prints, `ژ` is what the
+police database holds. Storage-vs-display is exactly what `PlateAlphabet.glyphs`
+is for, so a plate read back out of this package reads `ژ` and matches the
+registry.
+
+### Breaking
+
+- **`PersianAlphabets.plateLetters` is now `.privateLetters`, and its contents
+  changed.** It offered sixteen characters: thirteen private county letters
+  minus `ج`, plus `ت`, `ژ` and `گ` — which are reserved to taxis, disabled
+  drivers and temporary passage. Offering them in a private plate's picker let a
+  user build a plate that cannot legally exist. It is now the thirteen letters
+  the article's table assigns to private vehicles, `ج` included, and each
+  reserved letter lives on its own single-character alphabet instead.
+- **`IranPlates.bicycle` is now `.motorcycle`.** The spec was always the
+  motorcycle format — a three-digit provincial code over a five-digit serial —
+  and the old name described a vehicle Iran does not register. The geometry is
+  byte-for-byte unchanged; only the name and the spec id (`ir.bicycle` ->
+  `ir.motorcycle`) moved.
+
+### Added
+
+- `IranUsage` — the seventeen classes, each carrying the letter it is fixed to,
+  its Latin transliteration, and what it is in one phrase.
+- `IranColors` and `IranThemes` — eight schemes (black on white / yellow / tan /
+  cyan, white on red / green / forces-blue / brown), plus `IranThemes.forUsage`.
+  Every colour is the modal field or ink pixel of the corresponding reference
+  image, so they are measurements rather than guesses.
+- `PersianAlphabets.disabledSymbol`, `.taxiLetter`, `.publicLetter`,
+  `.agriculturalLetter`, `.governmentLetter`, `.policeLetter`, `.irgcLetter`,
+  `.armyLetter`, `.defenceLetter`, `.generalStaffLetter`, `.temporaryLetter`,
+  `.politicalLetter`, `.serviceLetter`, and `PersianAlphabets.forUsage`.
+- `IranPlates.disabled`, `.taxi`, `.publicTransport`, `.agricultural`,
+  `.government`, `.temporary`, `.police`, `.irgc`, `.army`,
+  `.ministryOfDefence`, `.generalStaff`, `.political`, `.service`, `.protocol`,
+  `.historic`, plus `IranPlates.forUsage` and `IranPlates.all`.
+- Keys on `IranPlates.car`'s text groups — `district`, `letter`, `serial`,
+  `province` — so a validator can pull a register by name rather than by index.
+  Visually a no-op.
+
+### Not shipped
+
+The free trade zone plates (Anzali, Aras, Arvand, Kish, Maku, Chabahar, Qeshm)
+each print their zone's logo, and this package ships no such image. For the same
+reason `IranPlates.historic` draws the ordinary flag-and-caption block where the
+real plate prints the Bagh-e Melli photograph — everything else about that plate
+is drawn. The previous-format political, service and temporary-passage plates
+are not included either; the article shows them only as small raster images.
+
+### Note
+
+`IranPlates.protocol` has **five** digit cells. The article says "simply a
+four-digit number", but the image it illustrates the section with reads `۱۳۹۰۱`,
+and five cells measure evenly across the space left of the wording. The picture
+is treated as the primary source.
+
+## 0.5.0
+
+**Bahrain and Azerbaijan moved out** to the `iranshahr_plate` package. This one
+is Iran's plates and nothing else.
+
 ## 0.4.0
 
 **Azerbaijan, in `src/azerbaijan/`.** Four specs — the civilian car plate, the
