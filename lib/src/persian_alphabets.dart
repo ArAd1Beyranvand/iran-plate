@@ -1,28 +1,26 @@
 import 'package:flutter/widgets.dart';
 import 'package:core_plate/core_plate.dart';
+import 'package:plate_alphabet/plate_alphabet.dart';
 
 import 'iran_usage.dart';
 
 /// The Persian alphabets a plate slot can be drawn over.
 ///
-/// Two kinds live here, and the difference is the whole *Letter series* table
-/// on the Wikipedia article:
+/// Digits come from [PlateAlphabetDigits.iranian] (shared across all packages);
+/// letters live here because they are constrained by plate validation rules.
 ///
-/// - [digits], and [privateLetters] — the thirteen-letter county series a
-///   **private** plate picks from. Genuine choices, so `AlphabetInput.chosen`
-///   opens a picker.
+/// The difference in the letter series matches the whole *Letter series* table
+/// on the Wikipedia article:
+/// - [privateLetters] — the thirteen-letter county series a **private** plate
+///   picks from. Genuine choices, so `AlphabetInput.chosen` opens a picker.
 /// - one single-character alphabet per non-private class ([taxiLetter],
 ///   [policeLetter], …). Their letter is fixed for the class, so there is
 ///   nothing to pick; they are still `AlphabetInput.chosen` so that the slot
 ///   cannot be typed into and emptied.
 abstract final class PersianAlphabets {
-  static const PlateAlphabet digits = PlateAlphabet(
-    id: 'fa.digits',
-    characters: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-    input: AlphabetInput.typed,
-    isNumeric: true,
-    glyphs: {'0': '۰', '1': '۱', '2': '۲', '3': '۳', '4': '۴', '5': '۵', '6': '۶', '7': '۷', '8': '۸', '9': '۹'},
-  );
+  /// Digits: shared via [PlateAlphabetDigits.iranian] in plate_alphabet.
+  /// Use that instead of defining locally.
+  static const PlateAlphabet digits = PlateAlphabetDigits.iranian;
 
   /// The thirteen letters a **private** plate's series letter can be, in the
   /// order the article's table lists them.
