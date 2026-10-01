@@ -57,7 +57,13 @@ abstract final class IranPlates {
           pitch: 38,
         ),
       ],
-      rules: const [PlateRule(box: PlateBox(404, 4.4, 5, 101.2))],
+      // The panel strip, the serial, then the province square behind a
+      // divider at x 404..409 from frame to frame.
+      background: const PlateSection.columns([
+        PlatePart(PlateSection.fill(PlateFill.panel), end: 56.4),
+        PlatePart(PlateSection.plain, end: 406.5, divider: 5),
+        PlatePart(PlateSection.plain),
+      ]),
       labels: [
         PlateLabel(text: squareCaption, box: const PlateBox(412, 18, 103, 16), glyphHeight: 16),
         ...extraLabels,
@@ -159,6 +165,10 @@ abstract final class IranPlates {
     canvasWidth: 520,
     canvasHeight: 110,
     panel: const PlatePanel(box: PlateBox(0, 0, 56.4, 110)),
+    background: const PlateSection.columns([
+      PlatePart(PlateSection.fill(PlateFill.panel), end: 56.4),
+      PlatePart(PlateSection.plain),
+    ]),
     textDirection: TextDirection.rtl,
     slots: plateRegisterAcross(
       alphabet: PersianAlphabets.digits,
@@ -190,6 +200,10 @@ abstract final class IranPlates {
       captionScale: 0.5,
       padding: EdgeInsets.fromLTRB(10, 12, 10, 12),
     ),
+    background: const PlateSection.columns([
+      PlatePart(PlateSection.fill(PlateFill.panel), end: 105),
+      PlatePart(PlateSection.plain),
+    ]),
     textDirection: TextDirection.rtl,
     borderWidthRatioOverride: 0.04,
     slots: plateRegisterAcross(
@@ -219,6 +233,17 @@ abstract final class IranPlates {
       captionScale: 0.25,
       padding: EdgeInsets.fromLTRB(15, 16, 6, 6),
     ),
+    // The panel is the top-left corner: a column of the top row.
+    background: const PlateSection.rows([
+      PlatePart(
+        PlateSection.columns([
+          PlatePart(PlateSection.fill(PlateFill.panel), end: 47),
+          PlatePart(PlateSection.plain),
+        ]),
+        end: 53.7,
+      ),
+      PlatePart(PlateSection.plain),
+    ]),
     textDirection: TextDirection.rtl,
     borderWidthRatioOverride: 0.05,
     slots: [
