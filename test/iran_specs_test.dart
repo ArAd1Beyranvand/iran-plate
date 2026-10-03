@@ -52,23 +52,30 @@ void main() {
       // Slot 2 is the series letter; every other slot is a Persian digit.
       for (var i = 0; i < spec.slotCount; i++) {
         if (i == 2) continue;
-        expect(spec.slots[i].alphabet, PersianAlphabets.digits, reason: '${usage.name} slot $i');
+        expect(
+          spec.slots[i].alphabet,
+          PersianAlphabets.digits,
+          reason: '${usage.name} slot $i',
+        );
       }
     }
   });
 
-  test('a non-private class fixes its series letter to exactly one character', () {
-    for (final usage in IranUsage.values) {
-      final letter = usage.seriesLetter;
-      if (letter == null) continue;
-      final alphabet = PersianAlphabets.forUsage(usage);
-      expect(alphabet, isNotNull, reason: usage.name);
-      expect(alphabet!.characters, [letter], reason: usage.name);
-      // Never typed: a fixed letter is not the user's to clear. See the note in
-      // PersianAlphabets.
-      expect(alphabet.input, AlphabetInput.chosen, reason: usage.name);
-    }
-  });
+  test(
+    'a non-private class fixes its series letter to exactly one character',
+    () {
+      for (final usage in IranUsage.values) {
+        final letter = usage.seriesLetter;
+        if (letter == null) continue;
+        final alphabet = PersianAlphabets.forUsage(usage);
+        expect(alphabet, isNotNull, reason: usage.name);
+        expect(alphabet!.characters, [letter], reason: usage.name);
+        // Never typed: a fixed letter is not the user's to clear. See the note in
+        // PersianAlphabets.
+        expect(alphabet.input, AlphabetInput.chosen, reason: usage.name);
+      }
+    },
+  );
 
   test('the disabled plate stores ژ and prints ♿︎', () {
     // The article's footnote: the wheelchair symbol is what is printed, `ژ` is
@@ -80,15 +87,34 @@ void main() {
     expect(IranUsage.disabled.seriesLetter, 'ژ');
   });
 
-  test('the private series is the thirteen county letters and nothing else', () {
-    // Every letter reserved to another class must be absent, or the picker
-    // would offer a private plate that cannot legally exist.
-    const reserved = <String>['ت', 'ع', 'ک', 'الف', 'پ', 'ث', 'ش', 'ز', 'ف', 'گ', 'ژ'];
-    expect(PersianAlphabets.privateLetters.characters, hasLength(13));
-    for (final letter in reserved) {
-      expect(PersianAlphabets.privateLetters.characters, isNot(contains(letter)), reason: letter);
-    }
-  });
+  test(
+    'the private series is the thirteen county letters and nothing else',
+    () {
+      // Every letter reserved to another class must be absent, or the picker
+      // would offer a private plate that cannot legally exist.
+      const reserved = <String>[
+        'ت',
+        'ع',
+        'ک',
+        'الف',
+        'پ',
+        'ث',
+        'ش',
+        'ز',
+        'ف',
+        'گ',
+        'ژ',
+      ];
+      expect(PersianAlphabets.privateLetters.characters, hasLength(13));
+      for (final letter in reserved) {
+        expect(
+          PersianAlphabets.privateLetters.characters,
+          isNot(contains(letter)),
+          reason: letter,
+        );
+      }
+    },
+  );
 
   test('alphabet ids are unique per character set across the package', () {
     final byId = <String, List<String>>{};

@@ -31,7 +31,21 @@ abstract final class PersianAlphabets {
   /// would let a user build a private plate that cannot legally exist.
   static const PlateAlphabet privateLetters = PlateAlphabet(
     id: 'fa.privateLetters',
-    characters: ['ب', 'ج', 'د', 'س', 'ص', 'ط', 'ق', 'ل', 'م', 'ن', 'و', 'ه', 'ی'],
+    characters: [
+      'ب',
+      'ج',
+      'د',
+      'س',
+      'ص',
+      'ط',
+      'ق',
+      'ل',
+      'م',
+      'ن',
+      'و',
+      'ه',
+      'ی',
+    ],
     input: AlphabetInput.chosen,
     isNumeric: false,
     direction: TextDirection.rtl,

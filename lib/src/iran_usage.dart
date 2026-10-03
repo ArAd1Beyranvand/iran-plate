@@ -25,21 +25,37 @@ enum IranUsage {
   /// would be. The police database records it as `ژ`; the plate prints the
   /// symbol. Issued provincially — `11 ♿︎ 111` upwards to disabled veterans,
   /// `51 ♿︎ 111` upwards to everyone else.
-  disabled(seriesLetter: 'ژ', latin: 'Ž', description: 'Private vehicles of people with disabilities'),
+  disabled(
+    seriesLetter: 'ژ',
+    latin: 'Ž',
+    description: 'Private vehicles of people with disabilities',
+  ),
 
   /// Black on yellow, fixed `ت` (for تاکسی) with the Latin word TAXI printed
   /// above it — the one class whose plate carries wording beyond the letter.
   taxi(seriesLetter: 'ت', latin: 'T', description: 'Taxis'),
 
   /// Black on yellow, fixed `ع` (for عمومی, "public").
-  publicTransport(seriesLetter: 'ع', latin: 'O', description: 'Public vehicles'),
+  publicTransport(
+    seriesLetter: 'ع',
+    latin: 'O',
+    description: 'Public vehicles',
+  ),
 
   /// Black on yellow, fixed `ک` (for کشاورزی, "agricultural").
-  agricultural(seriesLetter: 'ک', latin: 'K', description: 'Agricultural vehicles'),
+  agricultural(
+    seriesLetter: 'ک',
+    latin: 'K',
+    description: 'Agricultural vehicles',
+  ),
 
   /// White on red, fixed `الف` — the first letter of the alphabet spelled out
   /// as a word, which is how it is printed.
-  government(seriesLetter: 'الف', latin: 'A', description: 'Government vehicles'),
+  government(
+    seriesLetter: 'الف',
+    latin: 'A',
+    description: 'Government vehicles',
+  ),
 
   /// White on red, and not a series plate at all: `تشریفات` / PROTOCOL beside a
   /// bare number, with no province square and no county letter.
@@ -47,27 +63,55 @@ enum IranUsage {
 
   /// White on dark green, fixed `پ` (for پلیس). Issued nationally from
   /// provincial code `11` regardless of where the vehicle serves.
-  police(seriesLetter: 'پ', latin: 'P', description: 'Police (FARAJA) vehicles'),
+  police(
+    seriesLetter: 'پ',
+    latin: 'P',
+    description: 'Police (FARAJA) vehicles',
+  ),
 
   /// White on dark green, fixed `ث`. Also issued nationally from code `11`.
-  irgc(seriesLetter: 'ث', latin: 'Ṯ', description: 'Army Police (IRGC) vehicles'),
+  irgc(
+    seriesLetter: 'ث',
+    latin: 'Ṯ',
+    description: 'Army Police (IRGC) vehicles',
+  ),
 
   /// Black on light brown, fixed `ش`. Issued nationally from code `11`.
-  army(seriesLetter: 'ش', latin: 'Š', description: 'Islamic Republic of Iran Army vehicles'),
+  army(
+    seriesLetter: 'ش',
+    latin: 'Š',
+    description: 'Islamic Republic of Iran Army vehicles',
+  ),
 
   /// White on light blue, fixed `ز`. Issued nationally from code `11`.
-  ministryOfDefence(seriesLetter: 'ز', latin: 'Z', description: 'Ministry of Defence vehicles'),
+  ministryOfDefence(
+    seriesLetter: 'ز',
+    latin: 'Z',
+    description: 'Ministry of Defence vehicles',
+  ),
 
   /// White on light blue, fixed `ف`. Issued nationally from code `11`.
-  generalStaff(seriesLetter: 'ف', latin: 'F', description: 'General Staff of Armed Forces vehicles'),
+  generalStaff(
+    seriesLetter: 'ف',
+    latin: 'F',
+    description: 'General Staff of Armed Forces vehicles',
+  ),
 
   /// Black on cyan, fixed Latin `D`, and the right-hand square reads `سیاسی`
   /// rather than `ایران`. The serial is the three-digit country number.
-  political(seriesLetter: 'D', latin: 'D', description: 'Diplomatic and consular corps'),
+  political(
+    seriesLetter: 'D',
+    latin: 'D',
+    description: 'Diplomatic and consular corps',
+  ),
 
   /// Black on cyan, fixed Latin `S`, right-hand square `سرویس`. The
   /// international-organisation counterpart of [political].
-  service(seriesLetter: 'S', latin: 'S', description: 'Service (international organisations)'),
+  service(
+    seriesLetter: 'S',
+    latin: 'S',
+    description: 'Service (international organisations)',
+  ),
 
   /// Black on white, fixed `گ` — the plate a newly built car carries before it
   /// is registered.
@@ -81,7 +125,11 @@ enum IranUsage {
   /// provincial code over a five-digit serial, with no letter at all.
   motorcycle(seriesLetter: null, latin: null, description: 'Motorcycles');
 
-  const IranUsage({required this.seriesLetter, required this.latin, required this.description});
+  const IranUsage({
+    required this.seriesLetter,
+    required this.latin,
+    required this.description,
+  });
 
   /// The letter this class is fixed to, in the form the plate stores it, or
   /// null for a class whose letter is free ([private]) or which carries no

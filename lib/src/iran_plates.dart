@@ -65,7 +65,11 @@ abstract final class IranPlates {
         PlatePart(PlateSection.plain),
       ]),
       labels: [
-        PlateLabel(text: squareCaption, box: const PlateBox(412, 18, 103, 16), glyphHeight: 16),
+        PlateLabel(
+          text: squareCaption,
+          box: const PlateBox(412, 18, 103, 16),
+          glyphHeight: 16,
+        ),
         ...extraLabels,
       ],
       textGroups: const [
@@ -80,7 +84,10 @@ abstract final class IranPlates {
   // --- Civil classes --------------------------------------------------------
 
   /// Private cars: letter from county series.
-  static final PlateSpec car = _standard(id: 'ir.car', letter: PersianAlphabets.privateLetters);
+  static final PlateSpec car = _standard(
+    id: 'ir.car',
+    letter: PersianAlphabets.privateLetters,
+  );
 
   /// Disabled vehicles: wheelchair symbol fixed; wider slot (66 vs 55).
   static final PlateSpec disabled = _standard(
@@ -94,14 +101,22 @@ abstract final class IranPlates {
     id: 'ir.taxi',
     letter: PersianAlphabets.taxiLetter,
     letterBox: const PlateBox(175, 41, 55, 52),
-    extraLabels: const [PlateLabel(text: 'TAXI', box: PlateBox(158, 12, 89, 26), glyphHeight: 26)],
+    extraLabels: const [
+      PlateLabel(text: 'TAXI', box: PlateBox(158, 12, 89, 26), glyphHeight: 26),
+    ],
   );
 
   /// Public transport: black on yellow, `ع` fixed (for عمومی).
-  static final PlateSpec publicTransport = _standard(id: 'ir.public', letter: PersianAlphabets.publicLetter);
+  static final PlateSpec publicTransport = _standard(
+    id: 'ir.public',
+    letter: PersianAlphabets.publicLetter,
+  );
 
   /// Agricultural vehicles: black on yellow, `ک` fixed (for کشاورزی).
-  static final PlateSpec agricultural = _standard(id: 'ir.agricultural', letter: PersianAlphabets.agriculturalLetter);
+  static final PlateSpec agricultural = _standard(
+    id: 'ir.agricultural',
+    letter: PersianAlphabets.agriculturalLetter,
+  );
 
   /// Government vehicles: `الف` fixed; wider box (70).
   static final PlateSpec government = _standard(
@@ -111,24 +126,42 @@ abstract final class IranPlates {
   );
 
   /// Temporary passage: `گ` fixed; for newly built cars.
-  static final PlateSpec temporary = _standard(id: 'ir.temporary', letter: PersianAlphabets.temporaryLetter);
+  static final PlateSpec temporary = _standard(
+    id: 'ir.temporary',
+    letter: PersianAlphabets.temporaryLetter,
+  );
 
   // --- Military and law enforcement -----------------------------------------
 
   /// Police: `پ` fixed (for پلیس).
-  static final PlateSpec police = _standard(id: 'ir.police', letter: PersianAlphabets.policeLetter);
+  static final PlateSpec police = _standard(
+    id: 'ir.police',
+    letter: PersianAlphabets.policeLetter,
+  );
 
   /// IRGC: `ث` fixed.
-  static final PlateSpec irgc = _standard(id: 'ir.irgc', letter: PersianAlphabets.irgcLetter);
+  static final PlateSpec irgc = _standard(
+    id: 'ir.irgc',
+    letter: PersianAlphabets.irgcLetter,
+  );
 
   /// Army: `ش` fixed.
-  static final PlateSpec army = _standard(id: 'ir.army', letter: PersianAlphabets.armyLetter);
+  static final PlateSpec army = _standard(
+    id: 'ir.army',
+    letter: PersianAlphabets.armyLetter,
+  );
 
   /// Ministry of Defence: `ز` fixed.
-  static final PlateSpec ministryOfDefence = _standard(id: 'ir.defence', letter: PersianAlphabets.defenceLetter);
+  static final PlateSpec ministryOfDefence = _standard(
+    id: 'ir.defence',
+    letter: PersianAlphabets.defenceLetter,
+  );
 
   /// General Staff: `ف` fixed.
-  static final PlateSpec generalStaff = _standard(id: 'ir.generalStaff', letter: PersianAlphabets.generalStaffLetter);
+  static final PlateSpec generalStaff = _standard(
+    id: 'ir.generalStaff',
+    letter: PersianAlphabets.generalStaffLetter,
+  );
 
   // --- Political and service ------------------------------------------------
 
@@ -179,8 +212,16 @@ abstract final class IranPlates {
       height: 76,
     ),
     labels: const [
-      PlateLabel(text: 'تشریفات', box: PlateBox(63, 4, 221, 52), glyphHeight: 48),
-      PlateLabel(text: 'PROTOCOL', box: PlateBox(63, 56, 221, 42), glyphHeight: 42),
+      PlateLabel(
+        text: 'تشریفات',
+        box: PlateBox(63, 4, 221, 52),
+        glyphHeight: 48,
+      ),
+      PlateLabel(
+        text: 'PROTOCOL',
+        box: PlateBox(63, 56, 221, 42),
+        glyphHeight: 42,
+      ),
     ],
     textGroups: const [
       PlateTextGroup([0, 1, 2, 3, 4], key: 'serial'),
@@ -214,7 +255,13 @@ abstract final class IranPlates {
       top: 76,
       height: 58,
     ),
-    labels: const [PlateLabel(text: 'تاریخی', box: PlateBox(114, 12, 171, 46), glyphHeight: 46)],
+    labels: const [
+      PlateLabel(
+        text: 'تاریخی',
+        box: PlateBox(114, 12, 171, 46),
+        glyphHeight: 46,
+      ),
+    ],
     textGroups: const [
       PlateTextGroup([0, 1, 2, 3, 4], key: 'serial'),
     ],
@@ -256,7 +303,15 @@ abstract final class IranPlates {
         height: 36,
         pitch: 30,
       ),
-      ...plateRegister(alphabet: PersianAlphabets.digits, count: 5, left: 8, top: 58, width: 27, height: 44, pitch: 33),
+      ...plateRegister(
+        alphabet: PersianAlphabets.digits,
+        count: 5,
+        left: 8,
+        top: 58,
+        width: 27,
+        height: 44,
+        pitch: 33,
+      ),
     ],
     textGroups: const [
       PlateTextGroup([0, 1, 2], key: 'province'),
@@ -290,5 +345,7 @@ abstract final class IranPlates {
   /// Every Iranian plate this package ships, in [IranUsage] order. What a
   /// gallery walks so that adding a class here shows up there without the app
   /// naming it.
-  static List<PlateSpec> get all => <PlateSpec>[for (final IranUsage usage in IranUsage.values) forUsage(usage)];
+  static List<PlateSpec> get all => <PlateSpec>[
+    for (final IranUsage usage in IranUsage.values) forUsage(usage),
+  ];
 }

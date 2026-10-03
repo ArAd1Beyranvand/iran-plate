@@ -10,9 +10,20 @@ import 'package:iran_plate/iran_plate.dart';
 ///
 /// Regenerate with `flutter test --update-goldens` after a deliberate change.
 void main() {
-  testWidgets('car, full value (RTL, glyph mapping, province rule)', (tester) async {
+  testWidgets('car, full value (RTL, glyph mapping, province rule)', (
+    tester,
+  ) async {
     final spec = IranPlates.car;
-    final controller = PlateController.fromValues(spec, const ['1', '2', 'ب', '3', '4', '5', '6', '7']);
+    final controller = PlateController.fromValues(spec, const [
+      '1',
+      '2',
+      'ب',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+    ]);
 
     await tester.pumpWidget(
       MaterialApp(
@@ -29,7 +40,10 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    await expectLater(find.byType(PlateView), matchesGoldenFile('goldens/ir_car.png'));
+    await expectLater(
+      find.byType(PlateView),
+      matchesGoldenFile('goldens/ir_car.png'),
+    );
 
     await tester.pumpWidget(const SizedBox.shrink());
     controller.dispose();
