@@ -2,6 +2,7 @@ name: iran_plate
 description: "Iran's licence plates for the plate_core library — country panels, the Persian alphabets, and the Iranian plate specs."
 version: 0.6.0
 homepage: https://github.com/ArAd1Beyranvand/iran-plate
+resolution: workspace
 
 environment:
   sdk: '>=3.10.0 <4.0.0'
@@ -15,8 +16,7 @@ dependencies:
   # for PlateLabel.color (the Bahraini bands' reversed-out captions).
   plate_core: ^0.11.0
   # Shared alphabet definitions.
-  plate_alphabet:
-    path: ../plate_alphabet
+  plate_alphabet: ^0.1.0
 
 dev_dependencies:
   flutter_lints: ^6.0.0
