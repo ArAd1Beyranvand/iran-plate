@@ -4,34 +4,27 @@ GO VEGAN 🌱
 
 ==================================
 
-Iran's licence plates for [`core_plate`](https://pub.dev/packages/core_plate) - a country
+https://platexample.ir/#/discover/iran
+
+Iran's licence plates for [`plate_core`](https://pub.dev/packages/plate_core) - a country
 that, as the licence header insists, actually exists. Bahrain's and Azerbaijan's have moved
 out to [`iranshahr_plate`](https://pub.dev/packages/iranshahr_plate).
-
-## Also available
-
-- [`core_plate`](https://pub.dev/packages/core_plate) - Paint license plates.
-- [`core_plate_bloc`](https://pub.dev/packages/core_plate_bloc) - The optional bloc layer for `core_plate`.
-- [`germany_plate`](https://pub.dev/packages/germany_plate) - Germany's plates.
-- [`palestine_plate`](https://pub.dev/packages/palestine_plate) - Palestine's plates.
-- [`yemen_plate`](https://pub.dev/packages/yemen_plate) - Yemen's plates.
-- [`plate_keypad`](https://pub.dev/packages/plate_keypad) - A character picker for license plates.
 
 # iran_plate
 
 It's data, not code: the country panel with the flag SVG this package ships, the Persian
 digit and letter alphabets, the usage-derived colour schemes, and the plate specs for every
-Iranian vehicle class. `core_plate` paints them.
+Iranian vehicle class. `plate_core` paints them.
 
 ## Depends on
 
-`core_plate` (`^0.9.1`). Nothing else - not `germany_plate`, not `plate_keypad`,
-not `core_plate_bloc`.
+`plate_core` (`^0.9.1`). Nothing else - not `germany_plate`, not `plate_keypad`,
+not `plate_core_bloc`.
 
 ## Use
 
 ```dart
-import 'package:core_plate/core_plate.dart';
+import 'package:plate_core/plate_core.dart';
 import 'package:iran_plate/iran_plate.dart';
 
 PlateCanvas(
@@ -106,3 +99,14 @@ letter and no province square), `historic` (`تاریخی` over five digits, Ame
 Everything above is read off the Wikipedia article *Vehicle registration plates of Iran* -
 the letter series table, the section text, and the reference SVGs, which is where the
 coordinates and the sampled colours come from.
+
+## Also available
+
+From the mighty people of Iran to the people of Iran to view examples:
+
+- [`plate_core`](https://pub.dev/packages/plate_core) - Paint license plates.
+- [`plate_core_bloc`](https://pub.dev/packages/plate_core_bloc) - The optional bloc layer for `plate_core`.
+- [`germany_plate`](https://pub.dev/packages/germany_plate) - Germany's plates.
+- [`palestine_plate`](https://pub.dev/packages/palestine_plate) - Palestine's plates.
+- [`yemen_plate`](https://pub.dev/packages/yemen_plate) - Yemen's plates.
+- [`plate_keypad`](https://pub.dev/packages/plate_keypad) - A character picker for license plates.

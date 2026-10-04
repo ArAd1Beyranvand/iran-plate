@@ -137,7 +137,7 @@ The hyphens on the two civilian plates are `PlateLabel`s at the slots' own glyph
 height, not `PlateRule`s: a hyphen is a character printed in the serial's ink,
 and a rule would be painted in the divider colour.
 
-Requires `core_plate` ^0.9.1, unchanged.
+Requires `plate_core` ^0.9.1, unchanged.
 
 Every coordinate is sampled by eye from plate photographs.
 
@@ -168,7 +168,7 @@ Three things the designs have in common and one they do not:
   full height hard against it on the other three. That is the difference that
   makes the bicycle plate its own spec rather than a shorter `us`.
 
-Requires `core_plate` ^0.9.1 for `PlateLabel.color`.
+Requires `plate_core` ^0.9.1 for `PlateLabel.color`.
 
 Every coordinate is sampled by eye from plate photographs. The police roundel
 is deliberately absent; the gap it goes in is left in the head band.
@@ -189,14 +189,14 @@ is deliberately absent; the gap it goes in is left in the head band.
   is over `id` alone and a `static final` is initialised lazily once per
   isolate, so this changes no behaviour — but `const spec = IranPlates.car;`
   must become `final spec = …`, as the example now does.
-- Requires `core_plate: ^0.6.0` for `plateRegister`.
+- Requires `plate_core: ^0.6.0` for `plateRegister`.
 
 ## 0.1.0
 
 First pub.dev release.
 
-- Depends on the published `core_plate: ^0.1.0` (was a sibling `path:`
-  dependency). The import is `package:core_plate/core_plate.dart`. No API of
+- Depends on the published `plate_core: ^0.1.0` (was a sibling `path:`
+  dependency). The import is `package:plate_core/plate_core.dart`. No API of
   `iran_plate` changed.
 
 - Extracted from `plate-core` (package `plate_number`) at commit `86a0999`,
