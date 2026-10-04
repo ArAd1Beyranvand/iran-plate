@@ -67,7 +67,7 @@ void main() {
       for (final usage in IranUsage.values) {
         final letter = usage.seriesLetter;
         if (letter == null) continue;
-        final alphabet = PersianAlphabets.forUsage(usage);
+        final alphabet = IranUsageAlphabets.forUsage(usage);
         expect(alphabet, isNotNull, reason: usage.name);
         expect(alphabet!.characters, [letter], reason: usage.name);
         // Never typed: a fixed letter is not the user's to clear. See the note in
