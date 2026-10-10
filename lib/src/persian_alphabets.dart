@@ -12,7 +12,7 @@ abstract final class IranUsageAlphabets {
   /// [IranUsage.historic] and [IranUsage.motorcycle].
   ///
   /// The lookup is here and not on [IranUsage] so the enum stays free of a
-  /// `core_plate` dependency: a usage is a fact about a vehicle, and which
+  /// `plate_core` dependency: a usage is a fact about a vehicle, and which
   /// character set draws it is a fact about this rendering of it.
   static PlateAlphabet? forUsage(IranUsage usage) => switch (usage) {
     IranUsage.private => PersianAlphabets.privateLetters,

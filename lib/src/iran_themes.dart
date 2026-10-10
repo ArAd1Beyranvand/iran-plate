@@ -11,7 +11,7 @@ import 'iran_usage.dart';
 /// [IranUsage] exists as an axis separate from [PlateSpec].
 ///
 /// [PlateSpec] carries no theme field — a spec describes geometry, a theme
-/// describes colour, and `core_plate` keeps them apart deliberately — so the
+/// describes colour, and `plate_core` keeps them apart deliberately — so the
 /// host passes both:
 ///
 /// ```dart

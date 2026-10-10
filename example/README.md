@@ -15,7 +15,7 @@ Run it with `flutter run` from this directory.
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:core_plate/core_plate.dart';
+import 'package:plate_core/plate_core.dart';
 import 'package:iran_plate/iran_plate.dart';
 
 void main() => runApp(const ExampleApp());
