@@ -4,7 +4,7 @@ GO VEGAN 🌱
 
 ==================================
 
-From the mighty people of Iran to the people of Iran to view examples:
+From the mighty people of Iran to the enduring people of Iran to view examples:
 
 https://platexample.ir/#/discover/iran
 
