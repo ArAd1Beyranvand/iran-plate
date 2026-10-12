@@ -46,12 +46,12 @@ void main() {
     ];
     for (final usage in standard) {
       final spec = IranPlates.forUsage(usage);
-      expect(spec.slotCount, 8, reason: usage.name);
+      expect(spec.slotCount, 4, reason: usage.name);
       expect(spec.canvasWidth, 520, reason: usage.name);
       expect(spec.canvasHeight, 110, reason: usage.name);
-      // Slot 2 is the series letter; every other slot is a Persian digit.
+      // Slot 1 is the series letter; every other slot is a Persian digit field.
       for (var i = 0; i < spec.slotCount; i++) {
-        if (i == 2) continue;
+        if (i == 1) continue;
         expect(
           spec.slots[i].alphabet,
           PersianAlphabets.digits,

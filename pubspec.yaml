@@ -31,4 +31,5 @@ flutter:
   # fails for a fresh consumer.
   assets:
     - assets/flags/Flag_of_Iran.svg
+    - assets/historic_bagh_e_melli.png
 

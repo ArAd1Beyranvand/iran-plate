@@ -28,7 +28,7 @@ import 'iran_usage.dart';
 ///
 /// Every scheme prints the same rim and the same corner: `borderWidthRatio`
 /// 0.04 and `plateRadiusRatio` 0.12 on the full-size 520×110 plate, which is
-/// what `PlateTheme.standard()` already used for `IranPlates.car` and what the
+/// what `PlateTheme.standard()` already used for `IranPlates.civil` and what the
 /// reference images show. Nothing suggests the colour changes the printing, so
 /// none of the schemes below vary them. The motorcycle plate is a different
 /// form factor and takes a heavier rim — see [motorcycle].
@@ -127,6 +127,29 @@ abstract final class IranThemes {
     borderWidthRatio: 0.05,
     plateRadiusRatio: _plateRadiusRatio,
   );
+
+  /// [PlateSpec.resolveTheme] for `IranPlates.civil`: the scheme of the class
+  /// the series letter belongs to, on [base]'s rim and corner. Private (and an
+  /// empty letter) is black on white.
+  static PlateTheme civil(PlateTheme base, String Function(String key) group) {
+    final t = switch (group('letter')) {
+      'ت' || 'ع' || 'ک' => blackOnYellow,
+      'الف' => whiteOnRed,
+      'پ' || 'ث' => whiteOnGreen,
+      'ش' => blackOnTan,
+      'ز' || 'ف' => whiteOnForcesBlue,
+      'D' || 'S' => blackOnCyan,
+      _ => blackOnWhite,
+    };
+    return base.copyWith(
+      plateBackground: t.plateBackground,
+      plateBorder: t.plateBorder,
+      ink: t.ink,
+      dividerColor: t.dividerColor,
+      activeColor: t.activeColor,
+      inactiveColor: t.inactiveColor,
+    );
+  }
 
   /// The scheme a plate of this usage is printed in. Colour is *derived* from
   /// usage — a host never picks a theme directly.

@@ -2,183 +2,95 @@ import 'package:flutter/widgets.dart';
 import 'package:plate_core/plate_core.dart';
 
 import 'iran_country.dart';
+import 'iran_regions.dart';
+import 'iran_themes.dart';
 import 'iran_usage.dart';
 import 'persian_alphabets.dart';
 
-/// Iranian plate designs. One geometry, many liveries: shared [_standard] with
-/// data-driven letter, box, labels; colour in [IranThemes]. [protocol],
-/// [historic], [motorcycle] are written in full.
+/// Iranian plate designs. The fourteen civil, military and diplomatic classes
+/// are one spec, [civil]: the series letter picks the livery ([IranThemes.civil])
+/// and the wording ([_squareCaption], the TAXI label). [protocol], [historic],
+/// [motorcycle] are written in full.
 abstract final class IranPlates {
-  // --- The shared 520x110 blank ---------------------------------------------
+  /// The province square's caption: the class's own for the diplomatic
+  /// letters, else the region the code and letter locate, else "ایران".
+  static String? _squareCaption(String Function(String key) group) =>
+      switch (group('letter')) {
+        'D' => 'سیاسی',
+        'S' => 'سرویس',
+        _ => IranRegions.captionOf(group),
+      };
 
-  /// Shared blank: digit pair, letter, serial triple, province pair. `final`
-  /// not `const`: [plateRegister] runs a loop.
-  static PlateSpec _standard({
-    required String id,
-    required PlateAlphabet letter,
-    PlateBox letterBox = const PlateBox(175, 17, 55, 76),
-    String squareCaption = 'ایران',
-    List<PlateLabel> extraLabels = const <PlateLabel>[],
-  }) {
-    return PlateSpec(
-      id: id,
-      country: IranCountry.iran,
-      canvasWidth: 520,
-      canvasHeight: 110,
-      panel: const PlatePanel(box: PlateBox(0, 0, 56.4, 110)),
-      textDirection: TextDirection.rtl,
-      slots: [
-        ...plateRegister(
-          alphabet: PersianAlphabets.digits,
-          count: 2,
-          left: 65,
-          top: 17,
-          width: 47,
-          height: 76,
-          pitch: 55,
-        ),
-        PlateSlot(alphabet: letter, box: letterBox),
-        ...plateRegister(
-          alphabet: PersianAlphabets.digits,
-          count: 3,
-          left: 238,
-          top: 17,
-          width: 47,
-          height: 76,
-          pitch: 55,
-        ),
-        ...plateRegister(
-          alphabet: PersianAlphabets.digits,
-          count: 2,
-          left: 428,
-          top: 40,
-          width: 32,
-          height: 52,
-          pitch: 38,
-        ),
-      ],
-      // The panel strip, the serial, then the province square behind a
-      // divider at x 404..409 from frame to frame.
-      background: const PlateSection.columns([
-        PlatePart(PlateSection.fill(PlateFill.panel), end: 56.4),
-        PlatePart(PlateSection.plain, end: 406.5, divider: 5),
-        PlatePart(PlateSection.plain),
-      ]),
-      labels: [
-        PlateLabel(
-          text: squareCaption,
-          box: const PlateBox(412, 18, 103, 16),
-          glyphHeight: 16,
-        ),
-        ...extraLabels,
-      ],
-      textGroups: const [
-        PlateTextGroup([0, 1], key: 'district'),
-        PlateTextGroup([2], key: 'letter'),
-        PlateTextGroup([3, 4, 5], key: 'serial'),
-        PlateTextGroup([6, 7], prefix: 'IR ', key: 'province'),
-      ],
-    );
-  }
+  static String? _taxiCaption(String Function(String key) group) =>
+      group('letter') == 'ت' ? 'TAXI' : '';
 
-  // --- Civil classes --------------------------------------------------------
+  // Extra space after each digit of a run, so two digits sit at the printed
+  // 55-unit pitch (province: 38) instead of the font's own advance.
+  static const double _civilSpacing = 22;
+  static const double _provinceSpacing = 16;
 
-  /// Private cars: letter from county series.
-  static final PlateSpec car = _standard(
-    id: 'ir.car',
-    letter: PersianAlphabets.privateLetters,
-  );
-
-  /// Disabled vehicles: wheelchair symbol fixed; wider slot (66 vs 55).
-  static final PlateSpec disabled = _standard(
-    id: 'ir.disabled',
-    letter: PersianAlphabets.disabledSymbol,
-    letterBox: const PlateBox(170, 16, 66, 77),
-  );
-
-  /// Taxis: `ت` fixed with TAXI label; letter slot lower (top 41).
-  static final PlateSpec taxi = _standard(
-    id: 'ir.taxi',
-    letter: PersianAlphabets.taxiLetter,
-    letterBox: const PlateBox(175, 41, 55, 52),
-    extraLabels: const [
-      PlateLabel(text: 'TAXI', box: PlateBox(158, 12, 89, 26), glyphHeight: 26),
+  /// Every civil, military and diplomatic plate: digit pair, letter, serial
+  /// triple, province pair on a 520x110 blank.
+  static final PlateSpec civil = PlateSpec(
+    id: 'ir.civil',
+    country: IranCountry.iran,
+    canvasWidth: 520,
+    canvasHeight: 110,
+    panel: const PlatePanel(box: PlateBox(0, 0, 56.4, 110)),
+    textDirection: TextDirection.rtl,
+    resolveTheme: IranThemes.civil,
+    slots: const [
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(65, 17, 102, 76),
+        length: 2,
+        spacing: _civilSpacing,
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.civilLetters,
+        box: PlateBox(172, 17, 61, 76),
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(238, 17, 157, 76),
+        length: 3,
+        spacing: _civilSpacing,
+      ),
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(428, 40, 70, 52),
+        length: 2,
+        spacing: _provinceSpacing,
+      ),
     ],
-  );
-
-  /// Public transport: black on yellow, `ع` fixed (for عمومی).
-  static final PlateSpec publicTransport = _standard(
-    id: 'ir.public',
-    letter: PersianAlphabets.publicLetter,
-  );
-
-  /// Agricultural vehicles: black on yellow, `ک` fixed (for کشاورزی).
-  static final PlateSpec agricultural = _standard(
-    id: 'ir.agricultural',
-    letter: PersianAlphabets.agriculturalLetter,
-  );
-
-  /// Government vehicles: `الف` fixed; wider box (70).
-  static final PlateSpec government = _standard(
-    id: 'ir.government',
-    letter: PersianAlphabets.governmentLetter,
-    letterBox: const PlateBox(168, 17, 70, 76),
-  );
-
-  /// Temporary passage: `گ` fixed; for newly built cars.
-  static final PlateSpec temporary = _standard(
-    id: 'ir.temporary',
-    letter: PersianAlphabets.temporaryLetter,
-  );
-
-  // --- Military and law enforcement -----------------------------------------
-
-  /// Police: `پ` fixed (for پلیس).
-  static final PlateSpec police = _standard(
-    id: 'ir.police',
-    letter: PersianAlphabets.policeLetter,
-  );
-
-  /// IRGC: `ث` fixed.
-  static final PlateSpec irgc = _standard(
-    id: 'ir.irgc',
-    letter: PersianAlphabets.irgcLetter,
-  );
-
-  /// Army: `ش` fixed.
-  static final PlateSpec army = _standard(
-    id: 'ir.army',
-    letter: PersianAlphabets.armyLetter,
-  );
-
-  /// Ministry of Defence: `ز` fixed.
-  static final PlateSpec ministryOfDefence = _standard(
-    id: 'ir.defence',
-    letter: PersianAlphabets.defenceLetter,
-  );
-
-  /// General Staff: `ف` fixed.
-  static final PlateSpec generalStaff = _standard(
-    id: 'ir.generalStaff',
-    letter: PersianAlphabets.generalStaffLetter,
-  );
-
-  // --- Political and service ------------------------------------------------
-
-  /// Diplomatic corps: `D` fixed; square captioned `سیاسی`.
-  static final PlateSpec political = _standard(
-    id: 'ir.political',
-    letter: PersianAlphabets.politicalLetter,
-    squareCaption: 'سیاسی',
-  );
-
-  /// International-organisation service plates (UNHCR and the like): black on
-  /// cyan, Latin `S` fixed, square captioned `سرویس`. [political]'s
-  /// counterpart, and numbered the same way.
-  static final PlateSpec service = _standard(
-    id: 'ir.service',
-    letter: PersianAlphabets.serviceLetter,
-    squareCaption: 'سرویس',
+    // The panel strip, the serial, then the province square behind a divider
+    // at x 404..409 from frame to frame.
+    background: const PlateSection.columns([
+      PlatePart(PlateSection.fill(PlateFill.panel), end: 56.4),
+      PlatePart(PlateSection.plain, end: 406.5, divider: 5),
+      PlatePart(PlateSection.plain),
+    ]),
+    labels: const [
+      PlateLabel(
+        text: 'ایران',
+        box: PlateBox(412, 13, 103, 25.6),
+        glyphHeight: 25.6,
+        resolve: _squareCaption,
+      ),
+      // Printed above the letter on a taxi plate only; fades in with `ت`.
+      PlateLabel(
+        text: '',
+        box: PlateBox(175, 12, 55, 14),
+        glyphHeight: 12,
+        resolve: _taxiCaption,
+      ),
+    ],
+    textGroups: const [
+      PlateTextGroup([0], key: 'district'),
+      PlateTextGroup([1], key: 'letter'),
+      PlateTextGroup([2], key: 'serial'),
+      PlateTextGroup([3], prefix: 'IR ', key: 'province'),
+    ],
   );
 
   // --- The plates that are not the standard blank ---------------------------
@@ -203,14 +115,14 @@ abstract final class IranPlates {
       PlatePart(PlateSection.plain),
     ]),
     textDirection: TextDirection.rtl,
-    slots: plateRegisterAcross(
-      alphabet: PersianAlphabets.digits,
-      count: 5,
-      left: 294,
-      right: 497,
-      top: 16,
-      height: 76,
-    ),
+    slots: const [
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(294, 16, 203, 76),
+        length: 5,
+        spacing: 8,
+      ),
+    ],
     labels: const [
       PlateLabel(
         text: 'تشریفات',
@@ -224,128 +136,133 @@ abstract final class IranPlates {
       ),
     ],
     textGroups: const [
-      PlateTextGroup([0, 1, 2, 3, 4], key: 'serial'),
+      PlateTextGroup([0], key: 'serial'),
     ],
   );
 
-  /// Historic vehicles: `تاریخی` and five-digit serial; American-standard blank.
-  /// No Bagh-e Melli image (geometry calibrated by eye).
+  /// Historic vehicles: white on brown, a blue panel left and two rows right —
+  /// `تاریخی` over a five-digit serial, split by a horizontal rule. American-
+  /// standard blank (300x150), measured from the article's own artwork.
+  ///
+  /// The panel holds the flag, `I.R. IRAN` and, below them, a framed picture
+  /// of Bagh-e Melli. The picture is a photograph, which no box or text can
+  /// draw, so it is the one decal here; the frame is part of the image.
   static final PlateSpec historic = PlateSpec(
     id: 'ir.historic',
     country: IranCountry.iran,
     canvasWidth: 300,
     canvasHeight: 150,
     panel: const PlatePanel(
-      box: PlateBox(0, 0, 105, 150),
-      flagScale: 0.8,
-      captionScale: 0.5,
-      padding: EdgeInsets.fromLTRB(10, 12, 10, 12),
+      box: PlateBox(0, 0, 109.6, 68.8),
+      flagScale: 1.0,
+      captionScale: 0.45,
+      padding: EdgeInsets.fromLTRB(7.8, 12, 67.8, 25.8),
     ),
+    // The panel, then the two rows behind a vertical rule at x 108.3..110.9;
+    // the rows are split by one at y 72.4..75.
     background: const PlateSection.columns([
-      PlatePart(PlateSection.fill(PlateFill.panel), end: 105),
-      PlatePart(PlateSection.plain),
+      PlatePart(PlateSection.fill(PlateFill.panel), end: 109.6, divider: 2.6),
+      PlatePart(
+        PlateSection.rows([
+          PlatePart(PlateSection.plain, end: 73.7, divider: 2.6),
+          PlatePart(PlateSection.plain),
+        ]),
+      ),
     ]),
     textDirection: TextDirection.rtl,
-    borderWidthRatioOverride: 0.04,
-    slots: plateRegisterAcross(
-      alphabet: PersianAlphabets.digits,
-      count: 5,
-      left: 114,
-      right: 285,
-      top: 76,
-      height: 58,
-    ),
+    borderWidthRatioOverride: 0.02,
+    slots: const [
+      PlateSlot(
+        alphabet: PersianAlphabets.digits,
+        box: PlateBox(116.8, 84.5, 168.5, 48),
+        length: 5,
+        spacing: 13,
+      ),
+    ],
     labels: const [
       PlateLabel(
         text: 'تاریخی',
-        box: PlateBox(114, 12, 171, 46),
+        box: PlateBox(114, 18.4, 168, 46),
         glyphHeight: 46,
       ),
     ],
+    decals: const [
+      PlateDecal(
+        image: AssetImage(
+          'assets/historic_bagh_e_melli.png',
+          package: 'iran_plate',
+        ),
+        box: PlateBox(9.4, 68.8, 92.7, 70.3),
+      ),
+    ],
     textGroups: const [
-      PlateTextGroup([0, 1, 2, 3, 4], key: 'serial'),
+      PlateTextGroup([0], key: 'serial'),
     ],
   );
 
-  /// Motorcycles: three digits (province) upper band; five lower. No letter.
-  /// No zeros: after 499 comes 511. `final` not `const` (loops).
+  /// Motorcycles: a three-digit code over a five-digit serial, on a blue panel
+  /// in the top-left corner. No letter. No zeros: after 499 comes 511.
+  /// Positions are measured from the article's artwork (`Pelak melie motor`).
   static final PlateSpec motorcycle = PlateSpec(
     id: 'ir.motorcycle',
     country: IranCountry.iran,
     canvasWidth: 175,
     canvasHeight: 110,
     panel: const PlatePanel(
-      box: PlateBox(0, 0, 47, 53.7),
+      box: PlateBox(0, 0, 36.7, 58.4),
       flagScale: 1.0,
-      captionScale: 0.25,
-      padding: EdgeInsets.fromLTRB(15, 16, 6, 6),
+      captionScale: 0.5,
+      padding: EdgeInsets.fromLTRB(5.5, 5.4, 2.7, 3.4),
     ),
     // The panel is the top-left corner: a column of the top row.
     background: const PlateSection.rows([
       PlatePart(
         PlateSection.columns([
-          PlatePart(PlateSection.fill(PlateFill.panel), end: 47),
+          PlatePart(PlateSection.fill(PlateFill.panel), end: 36.7),
           PlatePart(PlateSection.plain),
         ]),
-        end: 53.7,
+        end: 58.4,
       ),
       PlatePart(PlateSection.plain),
     ]),
     textDirection: TextDirection.rtl,
     borderWidthRatioOverride: 0.05,
-    slots: [
-      ...plateRegister(
+    slots: const [
+      PlateSlot(
         alphabet: PersianAlphabets.digits,
-        count: 3,
-        left: 74,
-        top: 13,
-        width: 22,
-        height: 36,
-        pitch: 30,
+        box: PlateBox(63.1, 9.3, 79.8, 40),
+        length: 3,
+        spacing: 9.4,
       ),
-      ...plateRegister(
+      PlateSlot(
         alphabet: PersianAlphabets.digits,
-        count: 5,
-        left: 8,
-        top: 58,
-        width: 27,
-        height: 44,
-        pitch: 33,
+        box: PlateBox(8.5, 63.3, 151.5, 40),
+        length: 5,
+        spacing: 13,
       ),
     ],
     textGroups: const [
-      PlateTextGroup([0, 1, 2], key: 'province'),
-      PlateTextGroup([3, 4, 5, 6, 7], key: 'serial'),
+      PlateTextGroup([0], key: 'province'),
+      PlateTextGroup([1], key: 'serial'),
     ],
   );
 
   /// The blank a plate of this class is printed on. Geometry is *derived* from
-  /// usage, the same way `IranThemes.forUsage` derives the colour — a host that
-  /// knows it is drawing a taxi asks both and never picks either by hand.
+  /// usage. Every civil class shares [civil], whose colour follows its letter.
   static PlateSpec forUsage(IranUsage usage) => switch (usage) {
-    IranUsage.private => car,
-    IranUsage.disabled => disabled,
-    IranUsage.taxi => taxi,
-    IranUsage.publicTransport => publicTransport,
-    IranUsage.agricultural => agricultural,
-    IranUsage.government => government,
-    IranUsage.temporary => temporary,
-    IranUsage.police => police,
-    IranUsage.irgc => irgc,
-    IranUsage.army => army,
-    IranUsage.ministryOfDefence => ministryOfDefence,
-    IranUsage.generalStaff => generalStaff,
-    IranUsage.political => political,
-    IranUsage.service => service,
     IranUsage.protocol => protocol,
     IranUsage.historic => historic,
     IranUsage.motorcycle => motorcycle,
+    _ => civil,
   };
 
   /// Every Iranian plate this package ships, in [IranUsage] order. What a
   /// gallery walks so that adding a class here shows up there without the app
   /// naming it.
   static List<PlateSpec> get all => <PlateSpec>[
-    for (final IranUsage usage in IranUsage.values) forUsage(usage),
+    civil,
+    protocol,
+    historic,
+    motorcycle,
   ];
 }

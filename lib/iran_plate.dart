@@ -39,3 +39,6 @@ export 'src/persian_alphabets.dart';
 /// The plate specs: the shared 520x110 blank in fifteen classes, plus the
 /// protocol, historic and motorcycle blanks.
 export 'src/iran_plates.dart';
+
+/// Province and city of issue from a plate's code and letter.
+export 'src/iran_regions.dart' show IranRegion, IranRegions;
