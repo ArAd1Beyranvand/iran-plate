@@ -1,16 +1,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:plate_core/plate_core.dart';
 
-/// Iran's plate chrome.
-class IranCountry {
-  const IranCountry._();
+import 'iran_colors.dart';
 
-  /// The Islamic Republic of Iran, as it appears on a standard plate: a blue
-  /// panel with white "I.R." / "IRAN" text beside the flag.
+/// Iran's plate chrome.
+abstract final class IranCountry {
   static const PlateCountry iran = PlateCountry(
     code: 'ir',
     captionLines: ['I.R.', 'IRAN'],
-    panelColor: Color(0xFF16479D),
+    panelColor: IranColors.panelBlue,
     panelTextColor: Color(0xFFFFFFFF),
     flagAspectRatio: 7 / 4,
     flag: SvgPlateAsset('assets/flags/Flag_of_Iran.svg', package: 'iran_plate'),

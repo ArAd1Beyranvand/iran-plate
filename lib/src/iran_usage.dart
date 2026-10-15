@@ -1,22 +1,9 @@
 /// What an Iranian plate is licensed for.
 ///
-/// Iran encodes the vehicle class in **the series letter itself**, not in a
-/// separate field: the letter between the leading pair and the serial triple is
-/// free (one of thirteen, assigned by county) only on a private plate. On every
-/// other class it is fixed for the whole class — a taxi is always `ت`, a police
-/// car always `پ`, a government car always `الف`. That is the table under
-/// *Letter series* on the Wikipedia article, read as data.
-///
-/// A closed [enum] is right here where [PlateCountry] and [PlateSpec] are const
-/// data classes: the set of Iranian vehicle classes is fixed and owned by the
-/// state, not something a consumer of this package extends.
-///
-/// Usage drives two things and nothing else:
-///
-/// - the **livery** — `IranThemes.forUsage`, the yellow of a taxi and the green
-///   of a police car;
-/// - the **series letter** — [seriesLetter], and the [PlateSpec] that carries
-///   it, via `IranPlates.forUsage`.
+/// The class is encoded in the series letter itself: free (one of thirteen,
+/// assigned by county) on a private plate, fixed for the whole class on every
+/// other — a taxi is always `ت`, a police car `پ`. Usage drives the livery
+/// (`IranThemes.forUsage`) and the spec and series letter (`IranPlates.forUsage`).
 enum IranUsage {
   /// Black on white, letter chosen from the thirteen-letter county series.
   private(seriesLetter: null, latin: null, description: 'Private vehicles'),
