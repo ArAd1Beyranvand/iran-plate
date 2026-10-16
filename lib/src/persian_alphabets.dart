@@ -5,15 +5,12 @@ import 'iran_usage.dart';
 
 export 'package:plate_alphabet/plate_alphabet.dart' show PersianAlphabets;
 
-/// Which of the [PersianAlphabets] draws the series-letter slot of a plate.
 abstract final class IranUsageAlphabets {
-  /// The alphabet the series-letter slot of a [usage] plate is drawn over, or
-  /// null for a class that carries no letter — [IranUsage.protocol],
-  /// [IranUsage.historic] and [IranUsage.motorcycle].
+  /// The alphabet of [usage]'s series-letter slot, or null for a class with no
+  /// letter.
   ///
-  /// The lookup is here and not on [IranUsage] so the enum stays free of a
-  /// `plate_core` dependency: a usage is a fact about a vehicle, and which
-  /// character set draws it is a fact about this rendering of it.
+  /// Lives here, not on [IranUsage], so the enum stays free of a `plate_core`
+  /// dependency.
   static PlateAlphabet? forUsage(IranUsage usage) => switch (usage) {
     IranUsage.private => PersianAlphabets.privateLetters,
     IranUsage.disabled => PersianAlphabets.disabledSymbol,

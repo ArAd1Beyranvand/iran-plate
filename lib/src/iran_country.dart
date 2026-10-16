@@ -3,7 +3,6 @@ import 'package:plate_core/plate_core.dart';
 
 import 'iran_colors.dart';
 
-/// Iran's plate chrome.
 abstract final class IranCountry {
   static const PlateCountry iran = PlateCountry(
     code: 'ir',

@@ -21,7 +21,6 @@ class IranRegion {
   /// Null when only the province is certain.
   final String? city;
 
-  /// What the plate's "ایران" square is replaced with.
   String get caption => city ?? province;
 }
 

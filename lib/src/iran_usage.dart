@@ -1,9 +1,8 @@
 /// What an Iranian plate is licensed for.
 ///
-/// The class is encoded in the series letter itself: free (one of thirteen,
-/// assigned by county) on a private plate, fixed for the whole class on every
-/// other — a taxi is always `ت`, a police car `پ`. Usage drives the livery
-/// (`IranThemes.forUsage`) and the spec and series letter (`IranPlates.forUsage`).
+/// The class is encoded in the series letter: free (assigned by county) on a
+/// private plate, fixed for every other class. Usage drives the livery
+/// (`IranThemes.forUsage`) and the spec (`IranPlates.forUsage`).
 enum IranUsage {
   /// Black on white, letter chosen from the thirteen-letter county series.
   private(seriesLetter: null, latin: null, description: 'Private vehicles'),
@@ -122,9 +121,8 @@ enum IranUsage {
   /// null for a class whose letter is free ([private]) or which carries no
   /// letter at all ([protocol], [historic], [motorcycle]).
   ///
-  /// [disabled] is `ژ` here rather than `♿︎` deliberately: `ژ` is the stored
-  /// character and `♿︎` the printed glyph, which is exactly the
-  /// storage-vs-display split `PlateAlphabet.glyphs` exists for.
+  /// [disabled] is `ژ` here, the stored character; `♿︎` is the printed glyph
+  /// (`PlateAlphabet.glyphs`).
   final String? seriesLetter;
 
   /// The Latin equivalent of [seriesLetter] as the article's *Letter series*
@@ -133,6 +131,5 @@ enum IranUsage {
   /// Latin letter *is* the series letter.
   final String? latin;
 
-  /// What the class is, in one phrase, for a host that lists plate types.
   final String description;
 }

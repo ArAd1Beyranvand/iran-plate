@@ -100,10 +100,8 @@ abstract final class IranPlates {
   /// — the one full-size Iranian plate that is not a registration in the usual
   /// format.
   ///
-  /// Five digits, not four. The article says "simply a four-digit number", but
-  /// the image it illustrates the section with reads `۱۳۹۰۱`, and the five
-  /// cells measure evenly across the space left of the wording. The picture is
-  /// the primary source here.
+  /// Five digits, not four: the article's text says four, but its image reads
+  /// `۱۳۹۰۱` and five cells measure evenly; the picture wins.
   static final PlateSpec protocol = PlateSpec(
     id: 'ir.protocol',
     country: IranCountry.iran,
@@ -202,7 +200,6 @@ abstract final class IranPlates {
 
   /// Motorcycles: a three-digit code over a five-digit serial, on a blue panel
   /// in the top-left corner. No letter. No zeros: after 499 comes 511.
-  /// Positions are measured from the article's artwork (`Pelak melie motor`).
   static final PlateSpec motorcycle = PlateSpec(
     id: 'ir.motorcycle',
     country: IranCountry.iran,
@@ -247,8 +244,7 @@ abstract final class IranPlates {
     ],
   );
 
-  /// The blank a plate of this class is printed on. Geometry is *derived* from
-  /// usage. Every civil class shares [civil], whose colour follows its letter.
+  /// Every civil class shares [civil], whose colour follows its letter.
   static PlateSpec forUsage(IranUsage usage) => switch (usage) {
     IranUsage.protocol => protocol,
     IranUsage.historic => historic,
@@ -256,9 +252,7 @@ abstract final class IranPlates {
     _ => civil,
   };
 
-  /// Every Iranian plate this package ships, in [IranUsage] order. What a
-  /// gallery walks so that adding a class here shows up there without the app
-  /// naming it.
+  /// Every plate this package ships, in [IranUsage] order.
   static List<PlateSpec> get all => <PlateSpec>[
     civil,
     protocol,
