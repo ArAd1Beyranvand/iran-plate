@@ -14,7 +14,7 @@ dependencies:
     sdk: flutter
   # The country-neutral engine. 0.6.0 is required for plateRegister, 0.9.1
   # for PlateLabel.color (the Bahraini bands' reversed-out captions).
-  plate_core: ^0.11.5
+  plate_core: ^0.12.0
   # Shared alphabet definitions.
   plate_alphabet: ^0.1.1
 
