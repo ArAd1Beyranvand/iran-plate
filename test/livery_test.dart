@@ -6,8 +6,7 @@ import 'package:plate_core/plate_core.dart';
 void main() {
   test('the civil theme follows the series letter', () {
     final base = IranThemes.blackOnWhite;
-    PlateTheme of(String letter) =>
-        IranThemes.civil(base, (key) => key == 'letter' ? letter : '');
+    PlateTheme of(String letter) => IranThemes.civil(base, (key) => key == 'letter' ? letter : '');
     expect(of('ب').plateBackground, IranColors.white);
     expect(of('ت').plateBackground, IranColors.yellow);
     expect(of('الف').ink, IranColors.white);
@@ -25,9 +24,7 @@ void main() {
     }
   });
 
-  testWidgets('choosing ت fades the field to yellow and shows TAXI', (
-    tester,
-  ) async {
+  testWidgets('choosing ت fades the field to yellow and shows TAXI', (tester) async {
     final c = PlateController.fromValues(IranPlates.civil, const [
       '12', 'ب', '345', '11', //
     ]);

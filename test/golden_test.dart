@@ -13,10 +13,7 @@ void main() {
     'ir_car': (IranPlates.civil, IranUsage.private, ['12', 'ب', '345', '67']),
     'ir_protocol': (IranPlates.protocol, IranUsage.protocol, ['13901']),
     'ir_historic': (IranPlates.historic, IranUsage.historic, ['12365']),
-    'ir_motorcycle': (IranPlates.motorcycle, IranUsage.motorcycle, [
-      '123',
-      '56789',
-    ]),
+    'ir_motorcycle': (IranPlates.motorcycle, IranUsage.motorcycle, ['123', '56789']),
   };
 
   for (final entry in cases.entries) {
@@ -31,10 +28,7 @@ void main() {
               child: SizedBox(
                 width: 520,
                 height: 520 * spec.canvasHeight / spec.canvasWidth,
-                child: PlateView(
-                  controller: controller,
-                  theme: IranThemes.forUsage(usage),
-                ),
+                child: PlateView(controller: controller, theme: IranThemes.forUsage(usage)),
               ),
             ),
           ),
@@ -42,15 +36,10 @@ void main() {
       );
       await tester.pumpAndSettle();
       // A decal decodes off the test clock; give it real time, then repaint.
-      await tester.runAsync(
-        () => Future<void>.delayed(const Duration(milliseconds: 300)),
-      );
+      await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 300)));
       await tester.pump();
 
-      await expectLater(
-        find.byType(PlateView),
-        matchesGoldenFile('goldens/${entry.key}.png'),
-      );
+      await expectLater(find.byType(PlateView), matchesGoldenFile('goldens/${entry.key}.png'));
 
       await tester.pumpWidget(const SizedBox.shrink());
       controller.dispose();

@@ -14,12 +14,11 @@ import 'persian_alphabets.dart';
 abstract final class IranPlates {
   /// The province square's caption: the class's own for the diplomatic
   /// letters, else the region the code and letter locate, else "ایران".
-  static String? _squareCaption(String Function(String key) group) =>
-      switch (group('letter')) {
-        'D' => 'سیاسی',
-        'S' => 'سرویس',
-        _ => IranRegions.captionOf(group),
-      };
+  static String? _squareCaption(String Function(String key) group) => switch (group('letter')) {
+    'D' => 'سیاسی',
+    'S' => 'سرویس',
+    _ => IranRegions.captionOf(group),
+  };
 
   static String? _taxiCaption(String Function(String key) group) =>
       group('letter') == 'ت' ? 'TAXI' : '';
@@ -46,10 +45,7 @@ abstract final class IranPlates {
         length: 2,
         spacing: _civilSpacing,
       ),
-      PlateSlot(
-        alphabet: PersianAlphabets.civilLetters,
-        box: PlateBox(172, 17, 61, 76),
-      ),
+      PlateSlot(alphabet: PersianAlphabets.civilLetters, box: PlateBox(172, 17, 61, 76)),
       PlateSlot(
         alphabet: PersianAlphabets.digits,
         box: PlateBox(238, 17, 157, 76),
@@ -78,12 +74,7 @@ abstract final class IranPlates {
         resolve: _squareCaption,
       ),
       // Printed above the letter on a taxi plate only; fades in with `ت`.
-      PlateLabel(
-        text: '',
-        box: PlateBox(175, 12, 55, 14),
-        glyphHeight: 12,
-        resolve: _taxiCaption,
-      ),
+      PlateLabel(text: '', box: PlateBox(175, 12, 55, 14), glyphHeight: 12, resolve: _taxiCaption),
     ],
     textGroups: const [
       PlateTextGroup([0], key: 'district'),
@@ -122,16 +113,8 @@ abstract final class IranPlates {
       ),
     ],
     labels: const [
-      PlateLabel(
-        text: 'تشریفات',
-        box: PlateBox(63, 4, 221, 52),
-        glyphHeight: 48,
-      ),
-      PlateLabel(
-        text: 'PROTOCOL',
-        box: PlateBox(63, 56, 221, 42),
-        glyphHeight: 42,
-      ),
+      PlateLabel(text: 'تشریفات', box: PlateBox(63, 4, 221, 52), glyphHeight: 48),
+      PlateLabel(text: 'PROTOCOL', box: PlateBox(63, 56, 221, 42), glyphHeight: 42),
     ],
     textGroups: const [
       PlateTextGroup([0], key: 'serial'),
@@ -177,19 +160,10 @@ abstract final class IranPlates {
         spacing: 13,
       ),
     ],
-    labels: const [
-      PlateLabel(
-        text: 'تاریخی',
-        box: PlateBox(114, 18.4, 168, 46),
-        glyphHeight: 46,
-      ),
-    ],
+    labels: const [PlateLabel(text: 'تاریخی', box: PlateBox(114, 18.4, 168, 46), glyphHeight: 46)],
     decals: const [
       PlateDecal(
-        image: AssetImage(
-          'assets/historic_bagh_e_melli.png',
-          package: 'iran_plate',
-        ),
+        image: AssetImage('assets/historic_bagh_e_melli.png', package: 'iran_plate'),
         box: PlateBox(9.4, 68.8, 92.7, 70.3),
       ),
     ],
@@ -253,10 +227,5 @@ abstract final class IranPlates {
   };
 
   /// Every plate this package ships, in [IranUsage] order.
-  static List<PlateSpec> get all => <PlateSpec>[
-    civil,
-    protocol,
-    historic,
-    motorcycle,
-  ];
+  static List<PlateSpec> get all => <PlateSpec>[civil, protocol, historic, motorcycle];
 }
