@@ -118,8 +118,12 @@ abstract final class IranThemes {
   }
 
   static PlateTheme forUsage(IranUsage usage) => switch (usage) {
-    IranUsage.private || IranUsage.disabled || IranUsage.temporary => blackOnWhite,
-    IranUsage.taxi || IranUsage.publicTransport || IranUsage.agricultural => blackOnYellow,
+    IranUsage.private ||
+    IranUsage.disabled ||
+    IranUsage.temporary => blackOnWhite,
+    IranUsage.taxi ||
+    IranUsage.publicTransport ||
+    IranUsage.agricultural => blackOnYellow,
     IranUsage.government || IranUsage.protocol => whiteOnRed,
     IranUsage.police || IranUsage.irgc => whiteOnGreen,
     IranUsage.army => blackOnTan,
