@@ -95,6 +95,9 @@ abstract final class IranThemes {
     plateRadiusRatio: _plateRadiusRatio,
   );
 
+  // TODO(py): [D4-code] resolver with logic: hand-port against the same vectors (D9).
+  // TODO(ts): [D4-code] resolver with logic: hand-port against the same vectors (D9).
+  // TODO(kt): [D4-code] resolver with logic: hand-port against the same vectors (D9).
   /// [PlateSpec.resolveTheme] for `IranPlates.civil`: the colours of the class
   /// the series letter belongs to, on [base]'s rim and corner.
   static PlateTheme civil(PlateTheme base, String Function(String key) group) {

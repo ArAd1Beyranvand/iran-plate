@@ -24,6 +24,9 @@ class IranRegion {
   String get caption => city ?? province;
 }
 
+// TODO(py): [H9] Python re: \d/\w match Unicode; keep explicit [0-9]/[A-Z] classes (or re.ASCII).
+// TODO(ts): [H9] same flavour as Dart; port as is, cover accept/reject in the vectors (D9).
+// TODO(kt): [H9] Regex engine differs per target (JVM/JS/Native): keep to portable syntax.
 /// Locates an Iranian plate from its two-digit province code and series letter.
 abstract final class IranRegions {
   static const String _persian = '۰۱۲۳۴۵۶۷۸۹';
@@ -55,6 +58,9 @@ abstract final class IranRegions {
     return provinces.length == 1 ? IranRegion(province: provinces.first) : null;
   }
 
+  // TODO(py): [D4-table] lookup table: becomes a dict in the export, no code.
+  // TODO(ts): [D4-table] lookup table: becomes data in the export, no code.
+  // TODO(kt): [D4-table] lookup table: becomes a map in the export, no code.
   /// A [PlateLabelResolver] for the province square: the region's caption, or
   /// null (the label's own text) while it cannot be told.
   static String? captionOf(String Function(String key) group) =>

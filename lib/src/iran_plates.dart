@@ -12,6 +12,9 @@ import 'persian_alphabets.dart';
 /// and the wording ([_squareCaption], the TAXI label). [protocol], [historic],
 /// [motorcycle] are written in full.
 abstract final class IranPlates {
+  // TODO(py): [D4-table] lookup table: becomes a dict in the export, no code.
+  // TODO(ts): [D4-table] lookup table: becomes data in the export, no code.
+  // TODO(kt): [D4-table] lookup table: becomes a map in the export, no code.
   /// The province square's caption: the class's own for the diplomatic
   /// letters, else the region the code and letter locate, else "ایران".
   static String? _squareCaption(String Function(String key) group) =>
@@ -21,6 +24,9 @@ abstract final class IranPlates {
         _ => IranRegions.captionOf(group),
       };
 
+  // TODO(py): [D4-table] lookup table: becomes a dict in the export, no code.
+  // TODO(ts): [D4-table] lookup table: becomes data in the export, no code.
+  // TODO(kt): [D4-table] lookup table: becomes a map in the export, no code.
   static String? _taxiCaption(String Function(String key) group) =>
       group('letter') == 'ت' ? 'TAXI' : '';
 
@@ -186,6 +192,9 @@ abstract final class IranPlates {
     ],
     decals: const [
       PlateDecal(
+        // TODO(py): [H2][D6] ImageProvider: reference the raster as package + path; importlib.resources.
+        // TODO(ts): [H2][D6] ImageProvider: reference the raster as package + path; import as asset URL.
+        // TODO(kt): [H2][D6] ImageProvider: reference the raster as package + path; Res/compose resources.
         image: AssetImage(
           'assets/historic_bagh_e_melli.png',
           package: 'iran_plate',

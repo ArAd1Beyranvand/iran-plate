@@ -15,6 +15,9 @@
 /// For Bahrain and Azerbaijan plates, use the `iranshahr` package instead.
 library;
 
+// TODO(py): [D5] one module `plates.countries.iran`; assets via importlib.resources.
+// TODO(ts): [D5] one subpath export `./countries/iran`; tree-shakable.
+// TODO(kt): [D5] package `countries.iran` in the countries module.
 export 'src/iran_country.dart';
 
 export 'src/iran_colors.dart';
