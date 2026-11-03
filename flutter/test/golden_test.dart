@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:iran_plate/iran_plate.dart';
 import 'package:plate_core/plate_core.dart';
+import 'package:plate_core/testing.dart';
 
 /// One golden per Iranian spec, filled in full. The test runner draws every
 /// glyph as a box, so these pin geometry, layering and the field runs, not
@@ -25,36 +26,15 @@ void main() {
       final (spec, usage, values) = entry.value;
       final controller = PlateController.fromValues(spec, values);
 
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: SizedBox(
-                width: 520,
-                height: 520 * spec.canvasHeight / spec.canvasWidth,
-                child: PlateView(
-                  controller: controller,
-                  theme: IranThemes.forUsage(usage),
-                ),
-              ),
-            ),
-          ),
-        ),
+      await pumpPlateGolden(
+        tester,
+        controller,
+        'goldens/${entry.key}.png',
+        theme: IranThemes.forUsage(usage),
+        scoped: false,
+        stage: Size(520, 520 * spec.canvasHeight / spec.canvasWidth),
+        decodeDelay: const Duration(milliseconds: 300),
       );
-      await tester.pumpAndSettle();
-      // A decal decodes off the test clock; give it real time, then repaint.
-      await tester.runAsync(
-        () => Future<void>.delayed(const Duration(milliseconds: 300)),
-      );
-      await tester.pump();
-
-      await expectLater(
-        find.byType(PlateView),
-        matchesGoldenFile('goldens/${entry.key}.png'),
-      );
-
-      await tester.pumpWidget(const SizedBox.shrink());
-      controller.dispose();
     });
   }
 }

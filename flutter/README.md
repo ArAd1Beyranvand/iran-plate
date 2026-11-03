@@ -6,13 +6,24 @@ GO VEGAN 🌱
 
 From the mighty people of Iran to the enduring people of Iran to view examples:
 
-https://platexample.ir/#/discover/iran
+https://platexample.ir/#/discover/iran:flutter
 
 # iran_plate
 
-Iran's licence plates for the `plate_core` library. Iran encodes the vehicle class in the **series letter** — free on a private plate, fixed for every other class — and in the field colour. Both are derived from one `IranUsage`, never chosen. Bahrain's and Azerbaijan's plates live in `iranshahr_plate`.
+Iran's licence plates for the plate_core library — country panels, the Persian alphabets, and the Iranian plate specs.
 
-## Install
+## Languages
+
+| Language | Folder | Example |
+| --- | --- | --- |
+| Flutter / Dart | [`flutter/`](https://github.com/ArAd1Beyranvand/iran-plate/tree/main/flutter) | [platexample](https://platexample.ir/#/discover/iran:flutter) |
+| Kotlin | [`kotlin/`](https://github.com/ArAd1Beyranvand/iran-plate/tree/main/kotlin) | [platexample](https://platexample.ir/#/discover/iran:kotlin) |
+| Python | [`python/`](https://github.com/ArAd1Beyranvand/iran-plate/tree/main/python) | [platexample](https://platexample.ir/#/discover/iran:python) |
+| TypeScript | [`typescript/`](https://github.com/ArAd1Beyranvand/iran-plate/tree/main/typescript) | [platexample](https://platexample.ir/#/discover/iran:typescript) |
+
+## Quick start
+
+### Install
 
 ```yaml
 dependencies:
@@ -20,7 +31,7 @@ dependencies:
   iran_plate: ^0.6.0
 ```
 
-## Use
+### Use
 
 ```dart
 import 'package:plate_core/plate_core.dart';
@@ -33,13 +44,38 @@ PlateCanvas(
 );
 ```
 
-## Contains
+## Specs
 
-- `IranCountry` — country panel: `iran`.
-- `IranPlates` — 5 plate specs: `civil`, `protocol`, `historic`, `motorcycle`, `forUsage()`.
-- `IranThemes` — 9 themes: `blackOnWhite`, `blackOnYellow`, `whiteOnRed`, `whiteOnGreen`, `blackOnTan`, `whiteOnForcesBlue`, `blackOnCyan`, `whiteOnBrown`, `motorcycle`.
+Each spec is one plate layout.
+
+- `IranPlates.civil` — id `ir.civil`
+- `IranPlates.protocol` — id `ir.protocol`
+- `IranPlates.historic` — id `ir.historic`
+- `IranPlates.motorcycle` — id `ir.motorcycle`
+- `IranPlates.forUsage`(…)
+
+## Themes
+
+- `IranThemes.blackOnWhite`
+- `IranThemes.blackOnYellow`
+- `IranThemes.whiteOnRed`
+- `IranThemes.whiteOnGreen`
+- `IranThemes.blackOnTan`
+- `IranThemes.whiteOnForcesBlue`
+- `IranThemes.blackOnCyan`
+- `IranThemes.whiteOnBrown`
+- `IranThemes.motorcycle`
+- `IranThemes.civil`(…)
+- `IranThemes.forUsage`(…)
+
+## Change it
+
+`PlateCanvas` takes `spec:` (an entry of `IranPlates`) and `theme:` (an entry of `IranThemes`).
+
+## Also included
+
+- `IranCountry` — the country panel.
 - `IranRegions` — code table.
-- 2 bundled assets (`Flag_of_Iran.svg`, `historic_bagh_e_melli.png`).
 
 ## Plates
 
@@ -52,3 +88,6 @@ and the wording (the TAXI label). `protocol`, `historic`,
 
 Painted by [`plate_core`](https://pub.dev/packages/plate_core); alphabets shared through [`plate_alphabet`](https://pub.dev/packages/plate_alphabet); optional character picker in [`plate_keypad`](https://pub.dev/packages/plate_keypad).
 
+## License
+
+See [LICENSE](https://github.com/ArAd1Beyranvand/iran-plate/blob/main/LICENSE).
